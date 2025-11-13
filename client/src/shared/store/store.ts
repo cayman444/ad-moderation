@@ -1,7 +1,12 @@
 import { configureStore } from '@reduxjs/toolkit';
+import { adsApi } from '../api/endpoints';
 
 export const store = configureStore({
-  reducer: {},
+  reducer: {
+    [adsApi.reducerPath]: adsApi.reducer,
+  },
+  middleware: (getDefaultMiddleware) =>
+    getDefaultMiddleware().concat(adsApi.middleware),
 });
 
 export type RootState = ReturnType<typeof store.getState>;
