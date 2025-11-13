@@ -1,3 +1,9 @@
+import { AdList } from '@/features/advertisements/components';
+
 export const AdListPage = () => {
-  return <div>ad list page</div>;
+  return (
+    <main className="py-20">
+      <AdList />
+    </main>
+  );
 };
