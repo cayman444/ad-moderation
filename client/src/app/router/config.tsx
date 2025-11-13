@@ -1,5 +1,11 @@
-import { Button } from 'antd';
+import {
+  AdDetailsPage,
+  AdListPage,
+  ModeratorStatsPage,
+  NotFoundPage,
+} from '@/pages';
 import { createBrowserRouter, redirect } from 'react-router-dom';
+import { RootLayout } from '../layouts';
 
 export const ROUTES_PATHS = {
   HOME: '/',
@@ -10,24 +16,25 @@ export const ROUTES_PATHS = {
 
 export const router = createBrowserRouter([
   {
-    path: ROUTES_PATHS.HOME,
-    loader: () => redirect(ROUTES_PATHS.AD_LIST),
+    element: <RootLayout />,
+    children: [
+      {
+        index: true,
+        loader: () => redirect(ROUTES_PATHS.AD_LIST),
+      },
+      {
+        path: ROUTES_PATHS.AD_LIST,
+        element: <AdListPage />,
+      },
+      {
+        path: ROUTES_PATHS.AD_DETAILS,
+        element: <AdDetailsPage />,
+      },
+      {
+        path: ROUTES_PATHS.MODERATOR_STATS,
+        element: <ModeratorStatsPage />,
+      },
+    ],
   },
-  {
-    path: ROUTES_PATHS.AD_LIST,
-    element: (
-      <div>
-        ad list <Button type="primary">button</Button>
-      </div>
-    ),
-  },
-  {
-    path: ROUTES_PATHS.AD_DETAILS,
-    element: <div>details ad</div>,
-  },
-  {
-    path: ROUTES_PATHS.MODERATOR_STATS,
-    element: <div>stats</div>,
-  },
-  { path: '*', element: <div>Not found page</div> },
+  { path: '*', element: <NotFoundPage /> },
 ]);
