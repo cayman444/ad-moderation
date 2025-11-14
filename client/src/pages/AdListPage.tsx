@@ -1,4 +1,4 @@
-import { AdList } from '@/features/ad';
+import { AdList } from '@/features/advertisements';
 
 export const AdListPage = () => {
   return (

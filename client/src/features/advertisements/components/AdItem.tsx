@@ -1,8 +1,8 @@
-import { AdTag } from '@/features/ad-tag';
 import type { Advertisement } from '@/shared/api/types';
 import { ArrowRightOutlined, CalendarOutlined } from '@ant-design/icons';
 import { Button } from 'antd';
 import { type FC } from 'react';
+import { AdTag } from '../ui';
 
 export const AdItem: FC<Advertisement> = ({
   title,
