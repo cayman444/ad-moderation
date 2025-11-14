@@ -6,8 +6,8 @@ export const AdList = () => {
 
   return (
     <ul className="flex flex-col gap-4">
-      {adsResponse?.ads.map((_, ind) => (
-        <AdItem key={ind} />
+      {adsResponse?.ads.map((params) => (
+        <AdItem key={params.id} {...params} />
       ))}
     </ul>
   );
