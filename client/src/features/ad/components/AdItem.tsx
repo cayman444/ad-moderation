@@ -37,7 +37,7 @@ export const AdItem: FC<Advertisement> = ({
             </div>
             <span className="w-1 h-1 bg-neutral-800 rounded-full" />
             <div className="flex items-center gap-1">
-              <CalendarOutlined />{' '}
+              <CalendarOutlined />
               <span className="font-medium">{creationDate}</span>
             </div>
           </div>
