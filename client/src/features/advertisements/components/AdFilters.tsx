@@ -9,7 +9,7 @@ import { AdFilterPrice } from './AdFilterPrice';
 export const AdFilters = () => {
   const dispatch = useAppDispatch();
 
-  const { status, categoryId, minPrice, maxPrice } = useAppSelector(
+  const { status, categoryId, price } = useAppSelector(
     (state) => state.adFilters
   );
 
@@ -40,11 +40,7 @@ export const AdFilters = () => {
           handleChangeFilter({ filter: 'categoryId', value })
         }
       />
-      <AdFilterPrice
-        minPrice={minPrice}
-        maxPrice={maxPrice}
-        handleChangeFilter={handleChangeFilter}
-      />
+      <AdFilterPrice {...price} handleChangeFilter={handleChangeFilter} />
     </div>
   );
 };

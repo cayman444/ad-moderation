@@ -3,6 +3,7 @@ import type { AdChangeFilterParams, AdFiltersState } from './ad-filters-types';
 
 const initialState: AdFiltersState = {
   status: [],
+  price: { maxPrice: null, minPrice: null },
 };
 
 export const adFiltersSlice = createSlice({
@@ -11,7 +12,9 @@ export const adFiltersSlice = createSlice({
   reducers: {
     changeFilter: (
       state,
-      { payload: { filter, value } }: PayloadAction<AdChangeFilterParams>
+      {
+        payload: { filter, value, typePrice },
+      }: PayloadAction<AdChangeFilterParams>
     ) => {
       if (
         filter === 'categoryId' &&
@@ -25,17 +28,19 @@ export const adFiltersSlice = createSlice({
       }
 
       if (
-        filter === 'minPrice' &&
+        filter === 'price' &&
+        typePrice === 'minPrice' &&
         (typeof value === 'number' || value === null)
       ) {
-        state.minPrice = value;
+        state.price.minPrice = value;
       }
 
       if (
-        filter === 'maxPrice' &&
+        filter === 'price' &&
+        typePrice === 'maxPrice' &&
         (typeof value === 'number' || value === null)
       ) {
-        state.maxPrice = value;
+        state.price.maxPrice = value;
       }
     },
   },

@@ -4,9 +4,11 @@ import { AdFilters } from './AdFilters';
 import { AdList } from './AdList';
 
 export const Advertisements = () => {
-  const { status, categoryId, minPrice, maxPrice } = useAppSelector(
-    (state) => state.adFilters
-  );
+  const {
+    status,
+    categoryId,
+    price: { minPrice, maxPrice },
+  } = useAppSelector((state) => state.adFilters);
 
   // Основной запрос к api с параметрами
   const {

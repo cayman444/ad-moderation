@@ -21,15 +21,17 @@ export const useFilterPrice = ({
 
   useEffect(() => {
     handleChangeFilter({
-      filter: 'minPrice',
+      filter: 'price',
       value: debouncedMinPrice,
+      typePrice: 'minPrice',
     });
   }, [debouncedMinPrice, handleChangeFilter]);
 
   useEffect(() => {
     handleChangeFilter({
-      filter: 'maxPrice',
+      filter: 'price',
       value: debouncedMaxPrice,
+      typePrice: 'maxPrice',
     });
   }, [debouncedMaxPrice, handleChangeFilter]);
 

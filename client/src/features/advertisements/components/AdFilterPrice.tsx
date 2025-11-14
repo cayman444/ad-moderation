@@ -1,10 +1,8 @@
 import { InputNumber } from 'antd';
 import { useFilterPrice } from '../hooks';
-import type { AdChangeFilterParams } from '../model';
+import type { AdChangeFilterParams, AdFilterPriceType } from '../model';
 
-export interface AdFilterPriceProps {
-  minPrice?: number | null;
-  maxPrice?: number | null;
+export interface AdFilterPriceProps extends AdFilterPriceType {
   handleChangeFilter: (filterParams: AdChangeFilterParams) => void;
 }
 
