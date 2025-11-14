@@ -1,24 +1,18 @@
-import { useGetAdsQuery } from '@/shared/api/endpoints';
 import type { AdStatus } from '@/shared/api/types';
-import { useAppDispatch, useAppSelector } from '@/shared/store';
-import { type AdChangeFilterParams, changeFilter } from '../model';
+import { useAdFilters } from '../hooks';
 import { AdFilterSelect } from '../ui';
 import { getCategoryOptions, getStatusOptions } from '../utils';
 import { AdFilterPrice } from './AdFilterPrice';
 
 export const AdFilters = () => {
-  const dispatch = useAppDispatch();
-
-  const { status, categoryId, price } = useAppSelector(
-    (state) => state.adFilters
-  );
-
-  const handleChangeFilter = (filterParams: AdChangeFilterParams) => {
-    dispatch(changeFilter(filterParams));
-  };
-
-  // Дополнительный запрос к api без параметров для получения всех категорий
-  const { data: adsResponse, isFetching } = useGetAdsQuery({});
+  const {
+    adsResponse,
+    categoryId,
+    price,
+    status,
+    isFetching,
+    handleChangeFilter,
+  } = useAdFilters();
 
   return (
     <div className="flex gap-2 flex-wrap">
