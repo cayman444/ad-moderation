@@ -6,6 +6,7 @@ export interface AdFiltersState {
   price: AdFilterPriceType;
   sort: AdFilterSortType;
   search?: string;
+  page?: number;
 }
 
 export interface AdFilterPriceType {

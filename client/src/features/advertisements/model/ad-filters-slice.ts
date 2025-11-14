@@ -23,10 +23,12 @@ export const adFiltersSlice = createSlice({
         (typeof value === 'number' || typeof value === 'undefined')
       ) {
         state.categoryId = value;
+        state.page = undefined;
       }
 
       if (filter === 'status' && Array.isArray(value)) {
         state.status = value;
+        state.page = undefined;
       }
 
       if (
@@ -35,6 +37,7 @@ export const adFiltersSlice = createSlice({
         (typeof value === 'number' || value === null)
       ) {
         state.price.minPrice = value;
+        state.page = undefined;
       }
 
       if (
@@ -43,6 +46,7 @@ export const adFiltersSlice = createSlice({
         (typeof value === 'number' || value === null)
       ) {
         state.price.maxPrice = value;
+        state.page = undefined;
       }
 
       if (
@@ -50,6 +54,7 @@ export const adFiltersSlice = createSlice({
         (typeof value === 'string' || typeof value === 'undefined')
       ) {
         state.search = value;
+        state.page = undefined;
       }
 
       if (
@@ -67,6 +72,10 @@ export const adFiltersSlice = createSlice({
       ) {
         state.sort.sortOrder = value;
       }
+
+      if (filter === 'page' && typeof value === 'number') {
+        state.page = value;
+      }
     },
     resetFilters: (state) => {
       state.categoryId = undefined;
@@ -74,6 +83,7 @@ export const adFiltersSlice = createSlice({
       state.search = undefined;
       state.status = [];
       state.sort = { sortBy: null, sortOrder: null };
+      state.page = undefined;
     },
   },
 });

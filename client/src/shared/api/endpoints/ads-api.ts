@@ -15,6 +15,7 @@ export const adsApi = createApi({
         search,
         sortBy,
         sortOrder,
+        page,
       }) => {
         const searchParams = new URLSearchParams();
 
@@ -35,6 +36,7 @@ export const adsApi = createApi({
             sortOrder: sortOrder ?? undefined,
             categoryId,
             search,
+            page,
           },
         };
       },
