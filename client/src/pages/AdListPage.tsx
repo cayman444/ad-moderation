@@ -1,9 +1,9 @@
-import { AdList } from '@/features/advertisements';
+import { Advertisements } from '@/features/advertisements';
 
 export const AdListPage = () => {
   return (
-    <main className="py-20">
-      <AdList />
+    <main className="flex flex-col gap-8 py-20">
+      <Advertisements />
     </main>
   );
 };

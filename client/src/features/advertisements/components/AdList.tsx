@@ -1,9 +1,20 @@
 import { useGetAdsQuery } from '@/shared/api/endpoints';
+import type { AdvertisementList } from '@/shared/api/types';
 import { ErrorMessage } from '@/shared/ui';
-import { AdListSkeleton } from '../ui/AdListSkeleton';
+import type { SerializedError } from '@reduxjs/toolkit';
+import type { FetchBaseQueryError } from '@reduxjs/toolkit/query';
+import type { FC } from 'react';
+import { AdListSkeleton } from '../ui';
 import { AdItem } from './AdItem';
 
-export const AdList = () => {
+interface AdListParams {
+  adsList?: AdvertisementList;
+  isFetching: boolean;
+  isError: boolean;
+  error?: FetchBaseQueryError | SerializedError;
+}
+
+export const AdList: FC<AdListParams> = () => {
   const {
     data: adsResponse,
     isFetching,

@@ -1,1 +1,1 @@
-export { AdList } from './components/AdList';
+export { Advertisements } from './components/Advertisements';

@@ -1,5 +1,5 @@
 import type { AdPriority, AdStatus } from '@/shared/api/types';
-import { AD_TAG_CONFIG } from '../constants/ad-tag-config';
+import { AD_TAG_CONFIG } from '../constants';
 import type { AdTagProps } from '../types/ad-tag-types';
 
 export const getAdTagInfo = ({ type, value }: AdTagProps) => {
