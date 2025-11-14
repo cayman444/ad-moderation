@@ -24,6 +24,7 @@ const AdFilterSearchComponent: FC<AdFilterSearchProps> = ({
     <Input
       name="ad-search-filter"
       suffix={<SearchOutlined />}
+      allowClear
       placeholder="Поиск..."
       value={localSearch}
       onChange={(e) => setLocalSearch(e.target.value)}

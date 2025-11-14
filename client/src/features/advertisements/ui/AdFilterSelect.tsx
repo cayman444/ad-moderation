@@ -18,16 +18,18 @@ export const AdFilterSelect = <T,>({
   onChange,
 }: AdFilterSelectProps<T>) => {
   return (
-    <Select
-      mode={multiple ? 'multiple' : undefined}
-      onChange={onChange}
-      loading={isFetching}
-      placeholder={placeholder}
-      defaultValue={defaultValue}
-      allowClear
-      showSearch={false}
-      style={{ width: '100%' }}
-      options={options}
-    />
+    <div className="flex-1 flex">
+      <Select
+        mode={multiple ? 'multiple' : undefined}
+        onChange={onChange}
+        loading={isFetching}
+        placeholder={placeholder}
+        defaultValue={defaultValue}
+        allowClear
+        showSearch={false}
+        style={{ width: '100%' }}
+        options={options}
+      />
+    </div>
   );
 };
