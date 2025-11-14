@@ -1,11 +1,12 @@
+import { useGetAdsQuery } from '@/shared/api/endpoints';
 import { AdItem } from './AdItem';
 
 export const AdList = () => {
-  const list = Array.from({ length: 10 });
+  const { data: adsResponse } = useGetAdsQuery(null);
 
   return (
     <ul className="flex flex-col gap-4">
-      {list.map((_, ind) => (
+      {adsResponse?.ads.map((_, ind) => (
         <AdItem key={ind} />
       ))}
     </ul>
