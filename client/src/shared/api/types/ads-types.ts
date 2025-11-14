@@ -24,6 +24,18 @@ export interface AdvertisementResponse {
   pagination: Pagination;
 }
 
+export interface AdvertisementParams {
+  page: number;
+  limit: number;
+  status: AdStatus[];
+  categoryId: number;
+  minPrice: number;
+  maxPrice: number;
+  search: string;
+  sortBy: 'createdAt' | 'price' | 'priority';
+  sortOrder: 'asc' | 'desc';
+}
+
 export type AdStatus = 'pending' | 'approved' | 'rejected' | 'draft';
 export type AdPriority = 'normal' | 'urgent';
 export type AdvertisementList = Advertisement[];

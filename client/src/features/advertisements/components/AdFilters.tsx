@@ -1,25 +1,36 @@
-import type { AdvertisementList } from '@/shared/api/types';
-import type { FC } from 'react';
+import { useGetAdsQuery } from '@/shared/api/endpoints';
+import type { AdStatus } from '@/shared/api/types';
+import { useAppDispatch } from '@/shared/store';
+import { type AdChangeFilterParams, changeFilter } from '../model';
 import { AdFilterSelect } from '../ui';
 import { getCategoryOptions, getStatusOptions } from '../utils';
 
-interface AdFiltersParams {
-  adsList?: AdvertisementList;
-}
+export const AdFilters = () => {
+  const dispatch = useAppDispatch();
 
-export const AdFilters: FC<AdFiltersParams> = ({ adsList }) => {
+  const handleChangeSelect = (filterParams: AdChangeFilterParams) => {
+    dispatch(changeFilter(filterParams));
+  };
+
+  // Дополнительный запрос к api без параметров для получения всех категорий
+  const { data: adsResponse } = useGetAdsQuery({});
+
   return (
     <div className="flex gap-2">
       <AdFilterSelect
         options={getStatusOptions()}
         multiple
         placeholder="Статус"
-        onChange={() => null}
+        onChange={(value?: AdStatus[]) =>
+          handleChangeSelect({ filter: 'status', value })
+        }
       />
       <AdFilterSelect
-        options={getCategoryOptions(adsList)}
+        options={getCategoryOptions(adsResponse?.ads)}
         placeholder="Категория"
-        onChange={() => null}
+        onChange={(value?: number) =>
+          handleChangeSelect({ filter: 'categoryId', value })
+        }
       />
     </div>
   );
