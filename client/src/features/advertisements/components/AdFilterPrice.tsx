@@ -1,4 +1,5 @@
 import { InputNumber } from 'antd';
+import { memo } from 'react';
 import { useFilterPrice } from '../hooks';
 import type { AdChangeFilterParams, AdFilterPriceType } from '../model';
 
@@ -6,7 +7,7 @@ export interface AdFilterPriceProps extends AdFilterPriceType {
   handleChangeFilter: (filterParams: AdChangeFilterParams) => void;
 }
 
-export const AdFilterPrice = (filterPriceProps: AdFilterPriceProps) => {
+const AdFilterPriceComponent = (filterPriceProps: AdFilterPriceProps) => {
   const { localMinPrice, localMaxPrice, setLocalMinPrice, setLocalMaxPrice } =
     useFilterPrice(filterPriceProps);
 
@@ -39,3 +40,5 @@ export const AdFilterPrice = (filterPriceProps: AdFilterPriceProps) => {
     </div>
   );
 };
+
+export const AdFilterPrice = memo(AdFilterPriceComponent);

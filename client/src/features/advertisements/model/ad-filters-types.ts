@@ -4,6 +4,7 @@ export interface AdFiltersState {
   status: AdStatus[];
   categoryId?: number;
   price: AdFilterPriceType;
+  search?: string;
 }
 
 export interface AdFilterPriceType {

@@ -3,6 +3,7 @@ import { useAdFilters } from '../hooks';
 import { AdFilterSelect } from '../ui';
 import { getCategoryOptions, getStatusOptions } from '../utils';
 import { AdFilterPrice } from './AdFilterPrice';
+import { AdFilterSearch } from './AdFilterSearch';
 
 export const AdFilters = () => {
   const {
@@ -10,6 +11,7 @@ export const AdFilters = () => {
     categoryId,
     price,
     status,
+    search,
     isFetching,
     handleChangeFilter,
   } = useAdFilters();
@@ -35,6 +37,7 @@ export const AdFilters = () => {
         }
       />
       <AdFilterPrice {...price} handleChangeFilter={handleChangeFilter} />
+      <AdFilterSearch search={search} handleChangeFilter={handleChangeFilter} />
     </div>
   );
 };

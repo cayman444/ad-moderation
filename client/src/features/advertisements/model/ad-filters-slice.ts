@@ -42,6 +42,13 @@ export const adFiltersSlice = createSlice({
       ) {
         state.price.maxPrice = value;
       }
+
+      if (
+        filter === 'search' &&
+        (typeof value === 'string' || typeof value === 'undefined')
+      ) {
+        state.search = value;
+      }
     },
   },
 });
