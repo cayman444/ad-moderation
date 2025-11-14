@@ -4,13 +4,16 @@ import { useAppDispatch, useAppSelector } from '@/shared/store';
 import { type AdChangeFilterParams, changeFilter } from '../model';
 import { AdFilterSelect } from '../ui';
 import { getCategoryOptions, getStatusOptions } from '../utils';
+import { AdFilterPrice } from './AdFilterPrice';
 
 export const AdFilters = () => {
   const dispatch = useAppDispatch();
 
-  const { status, categoryId } = useAppSelector((state) => state.adFilters);
+  const { status, categoryId, minPrice, maxPrice } = useAppSelector(
+    (state) => state.adFilters
+  );
 
-  const handleChangeSelect = (filterParams: AdChangeFilterParams) => {
+  const handleChangeFilter = (filterParams: AdChangeFilterParams) => {
     dispatch(changeFilter(filterParams));
   };
 
@@ -18,14 +21,14 @@ export const AdFilters = () => {
   const { data: adsResponse, isFetching } = useGetAdsQuery({});
 
   return (
-    <div className="flex gap-2">
+    <div className="flex gap-2 flex-wrap">
       <AdFilterSelect
         options={getStatusOptions()}
         defaultValue={status}
         multiple
         placeholder="Статус"
         onChange={(value?: AdStatus[]) =>
-          handleChangeSelect({ filter: 'status', value })
+          handleChangeFilter({ filter: 'status', value })
         }
       />
       <AdFilterSelect
@@ -34,8 +37,13 @@ export const AdFilters = () => {
         isFetching={isFetching}
         placeholder="Категория"
         onChange={(value?: number) =>
-          handleChangeSelect({ filter: 'categoryId', value })
+          handleChangeFilter({ filter: 'categoryId', value })
         }
+      />
+      <AdFilterPrice
+        minPrice={minPrice}
+        maxPrice={maxPrice}
+        handleChangeFilter={handleChangeFilter}
       />
     </div>
   );

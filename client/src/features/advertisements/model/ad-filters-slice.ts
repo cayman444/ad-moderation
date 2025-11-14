@@ -14,14 +14,28 @@ export const adFiltersSlice = createSlice({
       { payload: { filter, value } }: PayloadAction<AdChangeFilterParams>
     ) => {
       if (
-        (filter === 'categoryId' && typeof value === 'number') ||
-        typeof value === 'undefined'
+        filter === 'categoryId' &&
+        (typeof value === 'number' || typeof value === 'undefined')
       ) {
         state.categoryId = value;
       }
 
       if (filter === 'status' && Array.isArray(value)) {
         state.status = value;
+      }
+
+      if (
+        filter === 'minPrice' &&
+        (typeof value === 'number' || value === null)
+      ) {
+        state.minPrice = value;
+      }
+
+      if (
+        filter === 'maxPrice' &&
+        (typeof value === 'number' || value === null)
+      ) {
+        state.maxPrice = value;
       }
     },
   },

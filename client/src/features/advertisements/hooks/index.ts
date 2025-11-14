@@ -1,0 +1,1 @@
+export { useFilterPrice } from './useFilterPrice';

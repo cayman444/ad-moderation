@@ -29,8 +29,8 @@ export interface AdvertisementParams {
   limit: number;
   status: AdStatus[];
   categoryId: number;
-  minPrice: number;
-  maxPrice: number;
+  minPrice: number | null;
+  maxPrice: number | null;
   search: string;
   sortBy: 'createdAt' | 'price' | 'priority';
   sortOrder: 'asc' | 'desc';

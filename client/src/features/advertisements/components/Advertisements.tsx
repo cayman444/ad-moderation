@@ -4,7 +4,9 @@ import { AdFilters } from './AdFilters';
 import { AdList } from './AdList';
 
 export const Advertisements = () => {
-  const { status, categoryId } = useAppSelector((state) => state.adFilters);
+  const { status, categoryId, minPrice, maxPrice } = useAppSelector(
+    (state) => state.adFilters
+  );
 
   // Основной запрос к api с параметрами
   const {
@@ -12,7 +14,7 @@ export const Advertisements = () => {
     isFetching,
     isError,
     error,
-  } = useGetAdsQuery({ status, categoryId });
+  } = useGetAdsQuery({ status, categoryId, minPrice, maxPrice });
 
   return (
     <>

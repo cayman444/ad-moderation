@@ -7,7 +7,7 @@ export const adsApi = createApi({
   baseQuery: fetchBaseQuery({ baseUrl: BASE_URL }),
   endpoints: (build) => ({
     getAds: build.query<AdvertisementResponse, Partial<AdvertisementParams>>({
-      query: ({ categoryId, status }) => {
+      query: ({ categoryId, status, minPrice, maxPrice }) => {
         const searchParams = new URLSearchParams();
 
         if (status) {
@@ -16,14 +16,15 @@ export const adsApi = createApi({
           });
         }
 
-        if (categoryId) {
-          searchParams.append('categoryId', categoryId.toString());
-        }
-
         const queryString = searchParams.toString();
 
         return {
-          url: `/ads?${queryString}`,
+          url: `/ads${queryString ? '?' + queryString : ''}`,
+          params: {
+            minPrice: minPrice ?? undefined,
+            maxPrice: maxPrice ?? undefined,
+            categoryId,
+          },
         };
       },
     }),
