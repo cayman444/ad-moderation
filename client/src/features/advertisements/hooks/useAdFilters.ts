@@ -1,7 +1,11 @@
 import { useGetAdsQuery } from '@/shared/api/endpoints';
 import { useAppDispatch, useAppSelector } from '@/shared/store';
 import { useCallback } from 'react';
-import { type AdChangeFilterParams, changeFilter } from '../model';
+import {
+  type AdChangeFilterParams,
+  changeFilter,
+  resetFilters,
+} from '../model';
 
 export const useAdFilters = () => {
   const dispatch = useAppDispatch();
@@ -17,6 +21,10 @@ export const useAdFilters = () => {
     [dispatch]
   );
 
+  const resetAllFilters = useCallback(() => {
+    dispatch(resetFilters());
+  }, [dispatch]);
+
   // Дополнительный запрос к api без параметров для получения всех категорий
   const { data: adsResponse, isFetching } = useGetAdsQuery({});
 
@@ -28,5 +36,6 @@ export const useAdFilters = () => {
     isFetching,
     search,
     handleChangeFilter,
+    resetAllFilters,
   };
 };

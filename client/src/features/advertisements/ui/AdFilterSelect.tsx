@@ -2,7 +2,7 @@ import { Select } from 'antd';
 
 interface AdFilterSelectProps<T> {
   onChange?: (value?: T) => void;
-  defaultValue?: T;
+  value?: T;
   placeholder: string;
   multiple?: boolean;
   isFetching?: boolean;
@@ -12,7 +12,7 @@ interface AdFilterSelectProps<T> {
 export const AdFilterSelect = <T,>({
   options,
   placeholder,
-  defaultValue,
+  value,
   isFetching,
   multiple = false,
   onChange,
@@ -24,7 +24,7 @@ export const AdFilterSelect = <T,>({
         onChange={onChange}
         loading={isFetching}
         placeholder={placeholder}
-        defaultValue={defaultValue}
+        value={value}
         allowClear
         showSearch={false}
         style={{ width: '100%' }}

@@ -17,6 +17,10 @@ const AdFilterSearchComponent: FC<AdFilterSearchProps> = ({
   const debouncedSearch = useDebounce(localSearch);
 
   useEffect(() => {
+    setLocalSearch(search);
+  }, [search]);
+
+  useEffect(() => {
     handleChangeFilter({ filter: 'search', value: debouncedSearch });
   }, [debouncedSearch, handleChangeFilter]);
 
@@ -27,6 +31,7 @@ const AdFilterSearchComponent: FC<AdFilterSearchProps> = ({
       allowClear
       placeholder="Поиск..."
       value={localSearch}
+      className="min-w-60!"
       onChange={(e) => setLocalSearch(e.target.value)}
     />
   );

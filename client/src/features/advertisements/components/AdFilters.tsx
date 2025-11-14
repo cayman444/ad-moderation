@@ -1,4 +1,5 @@
 import type { AdStatus } from '@/shared/api/types';
+import { Button } from 'antd';
 import { useAdFilters } from '../hooks';
 import { AdFilterSelect } from '../ui';
 import { getCategoryOptions, getStatusOptions } from '../utils';
@@ -14,13 +15,14 @@ export const AdFilters = () => {
     search,
     isFetching,
     handleChangeFilter,
+    resetAllFilters,
   } = useAdFilters();
 
   return (
     <div className="flex gap-2 flex-wrap">
       <AdFilterSelect
         options={getStatusOptions()}
-        defaultValue={status}
+        value={status}
         multiple
         placeholder="Статус"
         onChange={(value?: AdStatus[]) =>
@@ -29,7 +31,7 @@ export const AdFilters = () => {
       />
       <AdFilterSelect
         options={getCategoryOptions(adsResponse?.ads)}
-        defaultValue={categoryId}
+        value={categoryId}
         isFetching={isFetching}
         placeholder="Категория"
         onChange={(value?: number) =>
@@ -37,7 +39,17 @@ export const AdFilters = () => {
         }
       />
       <AdFilterPrice {...price} handleChangeFilter={handleChangeFilter} />
-      <AdFilterSearch search={search} handleChangeFilter={handleChangeFilter} />
+      <div className="flex-1 flex gap-2 flex-wrap">
+        <div className="flex-1 flex gap-2">
+          <AdFilterSearch
+            search={search}
+            handleChangeFilter={handleChangeFilter}
+          />
+        </div>
+        <Button type="primary" onClick={resetAllFilters}>
+          Сбросить фильтры
+        </Button>
+      </div>
     </div>
   );
 };

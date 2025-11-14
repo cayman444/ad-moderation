@@ -50,9 +50,15 @@ export const adFiltersSlice = createSlice({
         state.search = value;
       }
     },
+    resetFilters: (state) => {
+      state.categoryId = undefined;
+      state.price = { maxPrice: null, minPrice: null };
+      state.search = undefined;
+      state.status = [];
+    },
   },
 });
 
-export const { changeFilter } = adFiltersSlice.actions;
+export const { changeFilter, resetFilters } = adFiltersSlice.actions;
 
 export default adFiltersSlice.reducer;

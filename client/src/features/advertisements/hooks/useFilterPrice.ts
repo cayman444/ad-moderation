@@ -20,6 +20,14 @@ export const useFilterPrice = ({
   const debouncedMaxPrice = useDebounce(localMaxPrice);
 
   useEffect(() => {
+    setLocalMinPrice(minPrice);
+  }, [minPrice]);
+
+  useEffect(() => {
+    setLocalMaxPrice(maxPrice);
+  }, [maxPrice]);
+
+  useEffect(() => {
     handleChangeFilter({
       filter: 'price',
       value: debouncedMinPrice,
