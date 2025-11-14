@@ -13,7 +13,10 @@ export const adFiltersSlice = createSlice({
       state,
       { payload: { filter, value } }: PayloadAction<AdChangeFilterParams>
     ) => {
-      if (filter === 'categoryId' && typeof value === 'number') {
+      if (
+        (filter === 'categoryId' && typeof value === 'number') ||
+        typeof value === 'undefined'
+      ) {
         state.categoryId = value;
       }
 
