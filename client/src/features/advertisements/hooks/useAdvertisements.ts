@@ -7,6 +7,7 @@ export const useAdvertisements = () => {
     categoryId,
     price: { minPrice, maxPrice },
     search,
+    sort: { sortBy, sortOrder },
   } = useAppSelector((state) => state.adFilters);
 
   // Основной запрос к api с параметрами
@@ -15,7 +16,15 @@ export const useAdvertisements = () => {
     isFetching,
     isError,
     error,
-  } = useGetAdsQuery({ status, categoryId, minPrice, maxPrice, search });
+  } = useGetAdsQuery({
+    status,
+    categoryId,
+    minPrice,
+    maxPrice,
+    search,
+    sortBy,
+    sortOrder,
+  });
 
   return { adsResponse, isFetching, isError, error };
 };

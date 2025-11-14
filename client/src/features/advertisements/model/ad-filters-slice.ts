@@ -1,9 +1,11 @@
 import { type PayloadAction, createSlice } from '@reduxjs/toolkit';
+import { isSortByValue, isSortOrderValue } from './ad-filters-guards';
 import type { AdChangeFilterParams, AdFiltersState } from './ad-filters-types';
 
 const initialState: AdFiltersState = {
   status: [],
   price: { maxPrice: null, minPrice: null },
+  sort: { sortBy: null, sortOrder: null },
 };
 
 export const adFiltersSlice = createSlice({
@@ -13,7 +15,7 @@ export const adFiltersSlice = createSlice({
     changeFilter: (
       state,
       {
-        payload: { filter, value, typePrice },
+        payload: { filter, value, typePrice, typeSort },
       }: PayloadAction<AdChangeFilterParams>
     ) => {
       if (
@@ -49,12 +51,29 @@ export const adFiltersSlice = createSlice({
       ) {
         state.search = value;
       }
+
+      if (
+        filter === 'sort' &&
+        typeSort === 'sortBy' &&
+        (isSortByValue(value) || typeof value === 'undefined')
+      ) {
+        state.sort.sortBy = value;
+      }
+
+      if (
+        filter === 'sort' &&
+        typeSort === 'sortOrder' &&
+        (isSortOrderValue(value) || typeof value === 'undefined')
+      ) {
+        state.sort.sortOrder = value;
+      }
     },
     resetFilters: (state) => {
       state.categoryId = undefined;
       state.price = { maxPrice: null, minPrice: null };
       state.search = undefined;
       state.status = [];
+      state.sort = { sortBy: null, sortOrder: null };
     },
   },
 });

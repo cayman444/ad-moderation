@@ -1,4 +1,5 @@
 import type { AdStatus, AdvertisementList } from '@/shared/api/types';
+import type { SortBy } from '../model';
 
 export const getStatusOptions = (): { label: string; value: AdStatus }[] => {
   return [
@@ -33,4 +34,15 @@ export const getCategoryOptions = (adsList?: AdvertisementList) => {
   });
 
   return result;
+};
+
+export const getSortOptions = (): {
+  value: SortBy;
+  label: string;
+}[] => {
+  return [
+    { value: 'createdAt', label: 'По дате' },
+    { value: 'price', label: 'По цене' },
+    { value: 'priority', label: 'По приоритету' },
+  ];
 };

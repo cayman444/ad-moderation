@@ -2,9 +2,10 @@ import type { AdStatus } from '@/shared/api/types';
 import { Button } from 'antd';
 import { useAdFilters } from '../hooks';
 import { AdFilterSelect } from '../ui';
-import { getCategoryOptions, getStatusOptions } from '../utils';
+import { getCategoryOptions, getSortOptions, getStatusOptions } from '../utils';
 import { AdFilterPrice } from './AdFilterPrice';
 import { AdFilterSearch } from './AdFilterSearch';
+import { AdFilterSort } from './AdFilterSort';
 
 export const AdFilters = () => {
   const {
@@ -13,6 +14,7 @@ export const AdFilters = () => {
     price,
     status,
     search,
+    sort,
     isFetching,
     handleChangeFilter,
     resetAllFilters,
@@ -40,9 +42,16 @@ export const AdFilters = () => {
       />
       <AdFilterPrice {...price} handleChangeFilter={handleChangeFilter} />
       <div className="flex-1 flex gap-2 flex-wrap">
-        <div className="flex-1 flex gap-2">
-          <AdFilterSearch
-            search={search}
+        <div className="flex-1 flex gap-2 flex-wrap">
+          <div className="flex-1 flex">
+            <AdFilterSearch
+              search={search}
+              handleChangeFilter={handleChangeFilter}
+            />
+          </div>
+          <AdFilterSort
+            {...sort}
+            options={getSortOptions()}
             handleChangeFilter={handleChangeFilter}
           />
         </div>

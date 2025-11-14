@@ -32,8 +32,8 @@ export interface AdvertisementParams {
   minPrice: number | null;
   maxPrice: number | null;
   search: string;
-  sortBy: 'createdAt' | 'price' | 'priority';
-  sortOrder: 'asc' | 'desc';
+  sortBy: 'createdAt' | 'price' | 'priority' | null;
+  sortOrder: 'asc' | 'desc' | null;
 }
 
 export type AdStatus = 'pending' | 'approved' | 'rejected' | 'draft';

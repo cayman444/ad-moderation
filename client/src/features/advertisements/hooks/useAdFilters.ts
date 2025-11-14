@@ -10,7 +10,7 @@ import {
 export const useAdFilters = () => {
   const dispatch = useAppDispatch();
 
-  const { status, categoryId, price, search } = useAppSelector(
+  const { status, categoryId, price, search, sort } = useAppSelector(
     (state) => state.adFilters
   );
 
@@ -35,6 +35,7 @@ export const useAdFilters = () => {
     adsResponse,
     isFetching,
     search,
+    sort,
     handleChangeFilter,
     resetAllFilters,
   };
