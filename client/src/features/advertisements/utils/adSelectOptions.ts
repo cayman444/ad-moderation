@@ -16,7 +16,7 @@ export const getStatusOptions = (): { label: string; value: AdStatus }[] => {
       value: 'rejected',
     },
     {
-      label: 'Черновик',
+      label: 'Требуются исправления',
       value: 'draft',
     },
   ];

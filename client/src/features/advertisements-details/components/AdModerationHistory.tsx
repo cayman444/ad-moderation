@@ -15,7 +15,7 @@ export const AdModerationHistory: FC<AdModerationHistoryProps> = ({
   return (
     <div className="flex flex-col self-start gap-4 border rounded-lg p-4">
       <h4 className="text-xl font-medium">История модерации</h4>
-      <ul className="flex flex-col gap-4 h-50 overflow-y-auto">
+      <ul className="flex flex-col gap-4 h-52 overflow-y-auto">
         {isFetching && <AdModerationHistorySkeleton />}
         {!moderationHistory?.length && !isFetching && (
           <div className="flex-1 flex items-center justify-center text-lg font-medium">
