@@ -9,6 +9,13 @@ export const AdModerationHistoryItem: FC<ModerationHistory> = ({
   reason,
   comment,
 }) => {
+  const date = new Date(timestamp);
+  const fullDate = date.toLocaleDateString('ru-RU');
+  const time = date.toLocaleTimeString('ru-RU', {
+    hour: '2-digit',
+    minute: '2-digit',
+  });
+
   return (
     <li className="flex flex-col gap-2 border-b pb-4 mr-4 last:border-b-0 last:pb-0">
       <div className="flex gap-x-1 flex-wrap">
@@ -18,13 +25,8 @@ export const AdModerationHistoryItem: FC<ModerationHistory> = ({
       <div className="flex gap-x-1 flex-wrap">
         Дата:
         <div className="flex gap-1 font-medium">
-          <span>{new Date(timestamp).toLocaleDateString('ru-RU')},</span>
-          <span>
-            {new Date(timestamp).toLocaleTimeString('ru-RU', {
-              hour: '2-digit',
-              minute: '2-digit',
-            })}
-          </span>
+          <span>{fullDate},</span>
+          <span>{time}</span>
         </div>
       </div>
       <div className="flex gap-x-1 flex-wrap">
