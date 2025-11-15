@@ -2,7 +2,8 @@ import { createApi, fetchBaseQuery } from '@reduxjs/toolkit/query/react';
 import { BASE_URL } from '../constants';
 import type {
   Advertisement,
-  AdvertisementApproveResponse,
+  AdvertisementModeratorParams,
+  AdvertisementModeratorResponse,
   AdvertisementParams,
   AdvertisementResponse,
 } from '../types';
@@ -52,12 +53,27 @@ export const adsApi = createApi({
       query: (id) => `/ads/${id}`,
       providesTags: ['Ad'],
     }),
-    approveAd: build.mutation<AdvertisementApproveResponse, string>({
+    approveAd: build.mutation<AdvertisementModeratorResponse, number>({
       query: (id) => ({ url: `/ads/${id}/approve`, method: 'POST' }),
+      invalidatesTags: ['Ad'],
+    }),
+    rejectAd: build.mutation<
+      AdvertisementModeratorResponse,
+      AdvertisementModeratorParams
+    >({
+      query: ({ id, ...body }) => ({
+        url: `/ads/${id}/reject`,
+        method: 'POST',
+        body,
+      }),
       invalidatesTags: ['Ad'],
     }),
   }),
 });
 
-export const { useGetAdsQuery, useGetAdDetailsQuery, useApproveAdMutation } =
-  adsApi;
+export const {
+  useGetAdsQuery,
+  useGetAdDetailsQuery,
+  useApproveAdMutation,
+  useRejectAdMutation,
+} = adsApi;

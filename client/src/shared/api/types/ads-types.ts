@@ -1,4 +1,4 @@
-import type { ModerationHistoryList } from './moderator-types';
+import type { ModerationHistoryList, ModeratorReason } from './moderator-types';
 import type { Pagination } from './pagination-types';
 import type { Seller } from './seller-types';
 
@@ -36,9 +36,14 @@ export interface AdvertisementParams {
   sortOrder: 'asc' | 'desc' | null;
 }
 
-export interface AdvertisementApproveResponse {
+export interface AdvertisementModeratorResponse {
   message: string;
   ad: Advertisement;
+}
+export interface AdvertisementModeratorParams {
+  id: number;
+  reason: ModeratorReason;
+  comment: string;
 }
 
 export type AdStatus = 'pending' | 'approved' | 'rejected' | 'draft';

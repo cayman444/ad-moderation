@@ -3,10 +3,17 @@ export interface ModerationHistory {
   moderatorId: number;
   moderatorName: string;
   action: ModeratorAction;
-  reason: string | null;
+  reason: ModeratorReason | null;
   comment: string;
   timestamp: string;
 }
 
+export type ModeratorReason =
+  | 'Запрещенный товар'
+  | 'Неверная категория'
+  | 'Некорректное описание'
+  | 'Проблемы с фото'
+  | 'Подозрение на мошенничество'
+  | 'Другое';
 export type ModeratorAction = 'approved' | 'rejected' | 'requestChanges';
 export type ModerationHistoryList = ModerationHistory[];

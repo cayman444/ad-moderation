@@ -1,9 +1,5 @@
 @import "tailwindcss";
 
-html {
-  scrollbar-gutter: stable;
-}
-
 .slick-list {
   height: 100% !important;
   margin-inline: -8px !important;
