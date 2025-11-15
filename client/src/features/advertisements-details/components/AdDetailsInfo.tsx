@@ -1,19 +1,21 @@
-import type { Seller } from '@/shared/api/types';
+import { AdTag } from '@/features/advertisements/ui';
+import type { Advertisement } from '@/shared/api/types';
 import type { FC } from 'react';
 import { AdDetailsInfoSkeleton } from '../ui';
 
-interface AdDetailsInfoProps {
-  title?: string;
-  description?: string;
-  characteristics?: Record<string, string>;
-  seller?: Seller;
+interface AdDetailsInfoProps extends Partial<Advertisement> {
   isFetching: boolean;
 }
 
 export const AdDetailsInfo: FC<AdDetailsInfoProps> = ({
   description,
   title,
+  price,
+  category,
+  createdAt,
   characteristics,
+  status,
+  priority,
   seller,
   isFetching,
 }) => {
@@ -22,8 +24,40 @@ export const AdDetailsInfo: FC<AdDetailsInfoProps> = ({
   return (
     <div className="flex flex-col gap-4">
       <div className="flex flex-col gap-4">
-        <h1 className="font-medium text-xl">{title}</h1>
-        <div>{description}</div>
+        <h4 className="font-medium text-xl">Описание</h4>
+        <div className="flex-1 flex flex-col gap-2">
+          <div className="flex items-center gap-1">
+            Название: <span className="font-medium">{title}</span>
+          </div>
+          <div className="flex items-center gap-1">
+            Цена: <span className="font-medium">{price} ₽</span>
+          </div>
+          <div className="flex items-center gap-1">
+            Категория: <span className="font-medium">{category}</span>
+          </div>
+          <div className="flex items-center gap-1">
+            Дата создания:
+            <span className="font-medium">
+              {new Date(createdAt ?? '').toLocaleDateString()}
+            </span>
+          </div>
+          <div className="flex items-center gap-1">
+            Статус:
+            <span className="font-medium">
+              <AdTag type="status" value={status} />
+            </span>
+          </div>
+          <div className="flex items-center gap-1">
+            Приоритет:
+            <span className="font-medium">
+              <AdTag type="priority" value={priority} />
+            </span>
+          </div>
+          <div className="flex items-center gap-1 flex-wrap">
+            Подробное описание:
+            <span className="font-medium">{description}</span>
+          </div>
+        </div>
       </div>
       <div className="flex flex-col gap-4">
         <h4 className="font-medium text-xl">Характеристики</h4>

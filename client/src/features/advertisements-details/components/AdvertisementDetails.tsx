@@ -20,13 +20,7 @@ export const AdvertisementDetails = () => {
           isFetching={isFetching}
         />
       </div>
-      <AdDetailsInfo
-        description={adDetails?.description}
-        title={adDetails?.title}
-        characteristics={adDetails?.characteristics}
-        seller={adDetails?.seller}
-        isFetching={isFetching}
-      />
+      <AdDetailsInfo {...adDetails} isFetching={isFetching} />
       <AdModeratorActionPanel adId={adDetails?.id} />
       <AdDetailsNavigation adId={adDetails?.id} />
     </div>
