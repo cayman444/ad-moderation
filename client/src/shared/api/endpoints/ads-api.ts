@@ -1,6 +1,10 @@
 import { createApi, fetchBaseQuery } from '@reduxjs/toolkit/query/react';
 import { BASE_URL } from '../constants';
-import type { AdvertisementParams, AdvertisementResponse } from '../types';
+import type {
+  Advertisement,
+  AdvertisementParams,
+  AdvertisementResponse,
+} from '../types';
 
 export const adsApi = createApi({
   reducerPath: 'adsApi',
@@ -41,7 +45,10 @@ export const adsApi = createApi({
         };
       },
     }),
+    getAdDetails: build.query<Advertisement, string>({
+      query: (id) => `/ads/${id}`,
+    }),
   }),
 });
 
-export const { useGetAdsQuery } = adsApi;
+export const { useGetAdsQuery, useGetAdDetailsQuery } = adsApi;

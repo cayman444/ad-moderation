@@ -3,3 +3,24 @@
 html {
   scrollbar-gutter: stable;
 }
+
+.slick-list {
+  height: 100% !important;
+  margin-inline: -8px !important;
+}
+
+.slick-track {
+  height: 100% !important;
+}
+
+.slick-slide {
+  padding-inline: 8px !important;
+}
+
+.slick-slider {
+  height: 100% !important;
+}
+
+.slick-slide>div {
+  height: 100% !important;
+}
