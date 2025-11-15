@@ -13,7 +13,7 @@ export const AdvertisementDetails = () => {
 
   return (
     <div className="flex flex-col gap-8 p-4 border">
-      <div className="grid grid-cols-2 gap-4 overflow-hidden">
+      <div className="grid grid-cols-1 gap-4 overflow-hidden md:grid-cols-2">
         <AdImagesCarousel images={adDetails?.images} isFetching={isFetching} />
         <AdModerationHistory
           moderationHistory={adDetails?.moderationHistory}

@@ -19,7 +19,7 @@ export const AdImagesCarousel: FC<AdImagesCarouselProps> = ({
         <img
           key={image}
           src={image}
-          className="w-full h-full object-cover rounded-lg"
+          className="w-full  object-cover rounded-lg h-70 md:h-full"
           alt=""
         />
       ))}

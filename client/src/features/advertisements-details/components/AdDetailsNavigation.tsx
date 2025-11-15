@@ -20,11 +20,11 @@ export const AdDetailsNavigation = ({ adId }: { adId?: number }) => {
   };
 
   return (
-    <div className="flex justify-between">
+    <div className="flex justify-between gap-2 flex-wrap">
       <Link to={ROUTES_PATHS.AD_LIST}>
         <Button icon={<ArrowLeftOutlined />}>Назад к списку</Button>
       </Link>
-      <div className="flex gap-2">
+      <div className="flex gap-2 flex-wrap">
         <Button
           icon={<ArrowLeftOutlined />}
           disabled={!prevAdId ? true : false}
