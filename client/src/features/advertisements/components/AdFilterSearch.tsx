@@ -1,7 +1,6 @@
-import { useDebounce } from '@/shared/hooks';
 import { SearchOutlined } from '@ant-design/icons';
 import { Input } from 'antd';
-import { type FC, memo, useEffect, useState } from 'react';
+import { type FC, memo, useState } from 'react';
 import type { AdChangeFilterParams } from '../model';
 
 interface AdFilterSearchProps {
@@ -14,15 +13,11 @@ const AdFilterSearchComponent: FC<AdFilterSearchProps> = ({
   handleChangeFilter,
 }) => {
   const [localSearch, setLocalSearch] = useState(search);
-  const debouncedSearch = useDebounce(localSearch);
 
-  useEffect(() => {
-    setLocalSearch(search);
-  }, [search]);
-
-  useEffect(() => {
-    handleChangeFilter({ filter: 'search', value: debouncedSearch });
-  }, [debouncedSearch, handleChangeFilter]);
+  const handleChangeSearch = (value: string) => {
+    setLocalSearch(value);
+    handleChangeFilter({ filter: 'search', value });
+  };
 
   return (
     <Input
@@ -32,7 +27,7 @@ const AdFilterSearchComponent: FC<AdFilterSearchProps> = ({
       placeholder="Поиск..."
       value={localSearch}
       className="min-w-42!"
-      onChange={(e) => setLocalSearch(e.target.value)}
+      onChange={(e) => handleChangeSearch(e.target.value)}
     />
   );
 };

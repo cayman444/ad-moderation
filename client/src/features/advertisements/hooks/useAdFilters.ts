@@ -1,6 +1,7 @@
 import { useGetAdsQuery } from '@/shared/api/endpoints';
 import { useAppDispatch, useAppSelector } from '@/shared/store';
 import { useCallback } from 'react';
+import { useDebouncedCallback } from 'use-debounce';
 import {
   type AdChangeFilterParams,
   changeFilter,
@@ -21,6 +22,8 @@ export const useAdFilters = () => {
     [dispatch]
   );
 
+  const debouncedHandleFilter = useDebouncedCallback(handleChangeFilter, 500);
+
   const resetAllFilters = useCallback(() => {
     dispatch(resetFilters());
   }, [dispatch]);
@@ -36,6 +39,7 @@ export const useAdFilters = () => {
     isFetching,
     search,
     sort,
+    debouncedHandleFilter,
     handleChangeFilter,
     resetAllFilters,
   };

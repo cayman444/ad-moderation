@@ -8,8 +8,12 @@ export interface AdFilterPriceProps extends AdFilterPriceType {
 }
 
 const AdFilterPriceComponent = (filterPriceProps: AdFilterPriceProps) => {
-  const { localMinPrice, localMaxPrice, setLocalMinPrice, setLocalMaxPrice } =
-    useFilterPrice(filterPriceProps);
+  const {
+    localMinPrice,
+    localMaxPrice,
+    handleMaxPriceChange,
+    handleMinPriceChange,
+  } = useFilterPrice(filterPriceProps);
 
   return (
     <div className="flex gap-2 flex-wrap">
@@ -23,7 +27,7 @@ const AdFilterPriceComponent = (filterPriceProps: AdFilterPriceProps) => {
             suffix="₽"
             min={0}
             value={localMinPrice}
-            onChange={(value) => setLocalMinPrice(value)}
+            onChange={(value) => handleMinPriceChange(value)}
             className="w-full! min-w-30!"
             placeholder="мин"
           />
@@ -39,7 +43,7 @@ const AdFilterPriceComponent = (filterPriceProps: AdFilterPriceProps) => {
             suffix="₽"
             min={0}
             value={localMaxPrice}
-            onChange={(value) => setLocalMaxPrice(value)}
+            onChange={(value) => handleMaxPriceChange(value)}
             className="w-full! min-w-30!"
             placeholder="макс"
           />

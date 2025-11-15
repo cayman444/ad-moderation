@@ -1,5 +1,4 @@
-import { useDebounce } from '@/shared/hooks';
-import { useEffect, useState } from 'react';
+import { useState } from 'react';
 import type { AdFilterPriceProps } from '../components/AdFilterPrice';
 
 export const useFilterPrice = ({
@@ -7,41 +6,31 @@ export const useFilterPrice = ({
   maxPrice,
   handleChangeFilter,
 }: AdFilterPriceProps) => {
-  const [localMinPrice, setLocalMinPrice] = useState<number | null | undefined>(
-    minPrice
-  );
+  const [localMinPrice, setLocalMinPrice] = useState(minPrice);
+  const [localMaxPrice, setLocalMaxPrice] = useState(maxPrice);
 
-  const debouncedMinPrice = useDebounce(localMinPrice);
-
-  const [localMaxPrice, setLocalMaxPrice] = useState<number | null | undefined>(
-    maxPrice
-  );
-
-  const debouncedMaxPrice = useDebounce(localMaxPrice);
-
-  useEffect(() => {
-    setLocalMinPrice(minPrice);
-  }, [minPrice]);
-
-  useEffect(() => {
-    setLocalMaxPrice(maxPrice);
-  }, [maxPrice]);
-
-  useEffect(() => {
+  const handleMinPriceChange = (value?: number | null) => {
+    setLocalMinPrice(value);
     handleChangeFilter({
       filter: 'price',
-      value: debouncedMinPrice,
+      value,
       typePrice: 'minPrice',
     });
-  }, [debouncedMinPrice, handleChangeFilter]);
+  };
 
-  useEffect(() => {
+  const handleMaxPriceChange = (value?: number | null) => {
+    setLocalMaxPrice(value);
     handleChangeFilter({
       filter: 'price',
-      value: debouncedMaxPrice,
+      value,
       typePrice: 'maxPrice',
     });
-  }, [debouncedMaxPrice, handleChangeFilter]);
+  };
 
-  return { localMinPrice, localMaxPrice, setLocalMinPrice, setLocalMaxPrice };
+  return {
+    localMinPrice,
+    localMaxPrice,
+    handleMinPriceChange,
+    handleMaxPriceChange,
+  };
 };

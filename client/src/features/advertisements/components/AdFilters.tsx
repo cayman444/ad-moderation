@@ -16,6 +16,7 @@ export const AdFilters = () => {
     search,
     sort,
     isFetching,
+    debouncedHandleFilter,
     handleChangeFilter,
     resetAllFilters,
   } = useAdFilters();
@@ -40,13 +41,13 @@ export const AdFilters = () => {
           handleChangeFilter({ filter: 'categoryId', value })
         }
       />
-      <AdFilterPrice {...price} handleChangeFilter={handleChangeFilter} />
+      <AdFilterPrice {...price} handleChangeFilter={debouncedHandleFilter} />
       <div className="flex-1 flex gap-2 flex-wrap">
         <div className="flex-1 flex gap-2 flex-wrap">
           <div className="flex-1 flex">
             <AdFilterSearch
               search={search}
-              handleChangeFilter={handleChangeFilter}
+              handleChangeFilter={debouncedHandleFilter}
             />
           </div>
           <AdFilterSort
