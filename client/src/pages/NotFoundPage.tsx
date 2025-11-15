@@ -10,10 +10,10 @@ export const NotFoundPage = () => {
       <Result
         status="404"
         title="404"
-        subTitle="Sorry, the page you visited does not exist."
+        subTitle="Страница не найдена"
         extra={
           <Button type="primary" onClick={() => navigate(ROUTES_PATHS.AD_LIST)}>
-            Back Home
+            Вернуться к списку объявлений
           </Button>
         }
       />

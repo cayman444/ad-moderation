@@ -9,6 +9,16 @@ export const AdDetailsNavigation = ({ adId }: { adId?: number }) => {
   const prevAdId = adId ? adId - 1 : null;
   const nextAdId = adId ? adId + 1 : null;
 
+  const handleChangeAd = (direction: 'prev' | 'next') => {
+    if (direction === 'next') {
+      navigate(`/item/${nextAdId}`);
+    } else {
+      navigate(`/item/${prevAdId}`);
+    }
+
+    window.scrollTo({ top: 0, behavior: 'smooth' });
+  };
+
   return (
     <div className="flex justify-between">
       <Link to={ROUTES_PATHS.AD_LIST}>
@@ -18,7 +28,7 @@ export const AdDetailsNavigation = ({ adId }: { adId?: number }) => {
         <Button
           icon={<ArrowLeftOutlined />}
           disabled={!prevAdId ? true : false}
-          onClick={() => navigate(`/item/${prevAdId}`)}
+          onClick={() => handleChangeAd('prev')}
         >
           Предыдущее
         </Button>
@@ -26,7 +36,7 @@ export const AdDetailsNavigation = ({ adId }: { adId?: number }) => {
           icon={<ArrowRightOutlined />}
           iconPosition="end"
           disabled={!nextAdId ? true : false}
-          onClick={() => navigate(`/item/${nextAdId}`)}
+          onClick={() => handleChangeAd('next')}
         >
           Следующее
         </Button>

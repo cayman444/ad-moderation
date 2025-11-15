@@ -4,7 +4,12 @@ import { useParams } from 'react-router-dom';
 
 export const useAdvertisementDetails = () => {
   const { id } = useParams();
-  const { data: adDetails, isFetching } = useGetAdDetailsQuery(id ?? '', {
+  const {
+    data: adDetails,
+    isFetching,
+    isError,
+    error,
+  } = useGetAdDetailsQuery(id ?? '', {
     skip: !id,
   });
 
@@ -12,5 +17,5 @@ export const useAdvertisementDetails = () => {
     window.scrollTo({ top: 0 });
   }, []);
 
-  return { adDetails, isFetching };
+  return { adDetails, isFetching, isError, error };
 };
