@@ -3,13 +3,13 @@ import { Button, Input, Radio } from 'antd';
 import clsx from 'clsx';
 import type { FC } from 'react';
 import { AD_REASONS_REJECT_OPTIONS } from '../constants';
-import { useAdReasonsReject } from '../hooks';
+import { useAdReasons } from '../hooks';
 
-export interface AdReasonsRejectProps {
-  handleRejectAd: (reason: ModeratorReason, comment: string) => void;
+export interface AdReasonsProps {
+  handleReasonAd: (reason: ModeratorReason, comment: string) => void;
 }
 
-export const AdReasonsReject: FC<AdReasonsRejectProps> = (params) => {
+export const AdReasons: FC<AdReasonsProps> = (params) => {
   const {
     commentValue,
     reasonValue,
@@ -17,7 +17,7 @@ export const AdReasonsReject: FC<AdReasonsRejectProps> = (params) => {
     handleCommentValue,
     handleModalButtonClick,
     handleReasonValue,
-  } = useAdReasonsReject(params);
+  } = useAdReasons(params);
 
   return (
     <div className="flex flex-col gap-4 mt-6">

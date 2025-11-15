@@ -68,6 +68,17 @@ export const adsApi = createApi({
       }),
       invalidatesTags: ['Ad'],
     }),
+    requestChangesAd: build.mutation<
+      AdvertisementModeratorResponse,
+      AdvertisementModeratorParams
+    >({
+      query: ({ id, ...body }) => ({
+        url: `/ads/${id}/request-changes`,
+        method: 'POST',
+        body,
+      }),
+      invalidatesTags: ['Ad'],
+    }),
   }),
 });
 
@@ -76,4 +87,5 @@ export const {
   useGetAdDetailsQuery,
   useApproveAdMutation,
   useRejectAdMutation,
+  useRequestChangesAdMutation,
 } = adsApi;

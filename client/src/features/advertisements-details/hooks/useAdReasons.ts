@@ -1,11 +1,9 @@
 import type { ModeratorReason } from '@/shared/api/types';
 import type { RadioChangeEvent } from 'antd';
 import { type ChangeEvent, useState } from 'react';
-import type { AdReasonsRejectProps } from '../components/AdReasonsReject';
+import type { AdReasonsProps } from '../components/AdReasons';
 
-export const useAdReasonsReject = ({
-  handleRejectAd,
-}: AdReasonsRejectProps) => {
+export const useAdReasons = ({ handleReasonAd }: AdReasonsProps) => {
   const [reasonValue, setReasonValue] =
     useState<ModeratorReason>('Запрещенный товар');
   const [commentValue, setCommentValue] = useState('');
@@ -27,8 +25,11 @@ export const useAdReasonsReject = ({
       return;
     }
 
+    const currentCommentValue = reasonValue !== 'Другое' ? '' : commentValue;
+
     setCommentValueError(false);
-    handleRejectAd(reasonValue, commentValue);
+    setCommentValue('');
+    handleReasonAd(reasonValue, currentCommentValue);
   };
 
   return {

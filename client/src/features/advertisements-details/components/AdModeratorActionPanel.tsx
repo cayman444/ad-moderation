@@ -1,16 +1,11 @@
 import { CheckOutlined, CloseOutlined, EditOutlined } from '@ant-design/icons';
 import { Button, Modal } from 'antd';
 import { useAdModeratorActionPanel } from '../hooks';
-import { AdReasonsReject } from './AdReasonsReject';
+import { AdReasons } from './AdReasons';
 
 export const AdModeratorActionPanel = ({ adId }: { adId?: number }) => {
-  const {
-    isModalOpen,
-    handleApproveAd,
-    handleRejectAd,
-    handleRevisionAd,
-    handleChangeVisibleModal,
-  } = useAdModeratorActionPanel(adId);
+  const { modal, handleApproveAd, handleReasonAd, handleChangeVisibleModal } =
+    useAdModeratorActionPanel(adId);
 
   return (
     <div className="flex gap-2 flex-wrap">
@@ -28,7 +23,7 @@ export const AdModeratorActionPanel = ({ adId }: { adId?: number }) => {
         variant="solid"
         color="red"
         icon={<CloseOutlined />}
-        onClick={() => handleChangeVisibleModal(true)}
+        onClick={() => handleChangeVisibleModal(true, 'reject')}
       >
         Отклонить
       </Button>
@@ -37,18 +32,22 @@ export const AdModeratorActionPanel = ({ adId }: { adId?: number }) => {
         variant="solid"
         color="orange"
         icon={<EditOutlined />}
-        onClick={handleRevisionAd}
+        onClick={() => handleChangeVisibleModal(true, 'request-changes')}
       >
         Вернуть на доработку
       </Button>
       <Modal
-        title="Выберите причину отклонения"
-        open={isModalOpen}
+        title={
+          modal.action === 'reject'
+            ? 'Выберите причину отклонения'
+            : 'Выберите причину доработки'
+        }
+        open={modal.isModalOpen}
         onOk={() => handleChangeVisibleModal(true)}
         onCancel={() => handleChangeVisibleModal(false)}
         footer={false}
       >
-        <AdReasonsReject handleRejectAd={handleRejectAd} />
+        <AdReasons handleReasonAd={handleReasonAd} />
       </Modal>
     </div>
   );

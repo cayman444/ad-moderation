@@ -1,6 +1,7 @@
 import {
   useApproveAdMutation,
   useRejectAdMutation,
+  useRequestChangesAdMutation,
 } from '@/shared/api/endpoints';
 import type { ModeratorReason } from '@/shared/api/types';
 import { useState } from 'react';
@@ -8,10 +9,17 @@ import { useState } from 'react';
 export const useAdModeratorActionPanel = (id?: number) => {
   const [approveAd] = useApproveAdMutation();
   const [rejectAd] = useRejectAdMutation();
-  const [isModalOpen, setIsModalOpen] = useState(false);
+  const [requestChangesAd] = useRequestChangesAdMutation();
+  const [modal, setModal] = useState<{
+    isModalOpen: boolean;
+    action?: 'reject' | 'request-changes';
+  }>({ isModalOpen: false });
 
-  const handleChangeVisibleModal = (visible: boolean) => {
-    setIsModalOpen(visible);
+  const handleChangeVisibleModal = (
+    visible: boolean,
+    action?: 'reject' | 'request-changes'
+  ) => {
+    setModal({ isModalOpen: visible, action });
   };
 
   const handleApproveAd = () => {
@@ -20,20 +28,22 @@ export const useAdModeratorActionPanel = (id?: number) => {
     }
   };
 
-  const handleRejectAd = (reason: ModeratorReason, comment: string) => {
+  const handleReasonAd = (reason: ModeratorReason, comment: string) => {
     if (id) {
-      rejectAd({ id, reason, comment });
-      handleChangeVisibleModal(false);
+      if (modal.action === 'reject') {
+        rejectAd({ id, reason, comment });
+      } else if (modal.action === 'request-changes') {
+        requestChangesAd({ id, reason, comment });
+      }
+
+      setModal({ isModalOpen: false });
     }
   };
 
-  const handleRevisionAd = () => {};
-
   return {
-    isModalOpen,
+    modal,
     handleApproveAd,
-    handleRejectAd,
-    handleRevisionAd,
+    handleReasonAd,
     handleChangeVisibleModal,
   };
 };

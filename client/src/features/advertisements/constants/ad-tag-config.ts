@@ -4,6 +4,7 @@ export const AD_TAG_CONFIG = {
     pending: { color: 'orange', label: 'На модерации' },
     rejected: { color: 'red', label: 'Отклонено' },
     draft: { color: 'default', label: 'Черновик' },
+    requestChanges: { color: 'orange', label: 'На модерации' },
   },
   priority: {
     normal: { color: 'blue', label: 'Обычный' },
