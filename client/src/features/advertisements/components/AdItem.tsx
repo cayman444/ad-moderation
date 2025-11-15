@@ -1,3 +1,4 @@
+import { AdDetailsItemInfo } from '@/features/advertisements-details/components/AdDetailsItemInfo';
 import type { Advertisement } from '@/shared/api/types';
 import { ArrowRightOutlined, CalendarOutlined } from '@ant-design/icons';
 import { Button } from 'antd';
@@ -31,31 +32,23 @@ export const AdItem: FC<Advertisement> = ({
           </div>
           <div className="flex-1 flex flex-col gap-1">
             <h4 className="text-lg line-clamp-2">{title}</h4>
-            <div className="flex items-center gap-1">
-              Цена: <span className="font-medium">{price} ₽</span>
-            </div>
-            <div className="flex items-center gap-2">
-              <div className="flex items-center gap-1">
-                Категория: <span className="font-medium">{category}</span>
+            <AdDetailsItemInfo title="Цена">{price} ₽</AdDetailsItemInfo>
+            <AdDetailsItemInfo title="Категория">
+              <div className="flex items-center gap-2">
+                <span className="font-medium">{category}</span>
+                <span className="w-1 h-1 bg-neutral-800 rounded-full" />
+                <div className="flex items-center gap-1">
+                  <CalendarOutlined />
+                  <span className="font-medium">{creationDate}</span>
+                </div>
               </div>
-              <span className="w-1 h-1 bg-neutral-800 rounded-full" />
-              <div className="flex items-center gap-1">
-                <CalendarOutlined />
-                <span className="font-medium">{creationDate}</span>
-              </div>
-            </div>
-            <div className="flex items-center gap-1">
-              Статус:
-              <span className="font-medium">
-                <AdTag type="status" value={status} />
-              </span>
-            </div>
-            <div className="flex items-center gap-1">
-              Приоритет:
-              <span className="font-medium">
-                <AdTag type="priority" value={priority} />
-              </span>
-            </div>
+            </AdDetailsItemInfo>
+            <AdDetailsItemInfo title="Статус">
+              <AdTag type="status" value={status} />
+            </AdDetailsItemInfo>
+            <AdDetailsItemInfo title="Приоритет">
+              <AdTag type="priority" value={priority} />
+            </AdDetailsItemInfo>
           </div>
           <Button
             icon={<ArrowRightOutlined />}
