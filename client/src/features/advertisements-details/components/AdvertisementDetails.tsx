@@ -1,4 +1,5 @@
 import { useAdvertisementDetails } from '../hooks';
+import { AdDetailsInfo } from './AdDetailsInfo';
 import { AdImagesCarousel } from './AdImagesCarousel';
 import { AdModerationHistory } from './AdModerationHistory';
 
@@ -6,7 +7,7 @@ export const AdvertisementDetails = () => {
   const { adDetails, isFetching } = useAdvertisementDetails();
 
   return (
-    <div className="flex flex-col gap-4 p-4 border">
+    <div className="flex flex-col gap-8 p-4 border">
       <div className="grid grid-cols-2 gap-4 overflow-hidden">
         <AdImagesCarousel images={adDetails?.images} isFetching={isFetching} />
         <AdModerationHistory
@@ -14,7 +15,13 @@ export const AdvertisementDetails = () => {
           isFetching={isFetching}
         />
       </div>
-      <div>Полное описание</div>
+      <AdDetailsInfo
+        description={adDetails?.description}
+        title={adDetails?.title}
+        characteristics={adDetails?.characteristics}
+        seller={adDetails?.seller}
+        isFetching={isFetching}
+      />
     </div>
   );
 };
