@@ -1,4 +1,5 @@
 import { useGetAdDetailsQuery } from '@/shared/api/endpoints';
+import { useEffect } from 'react';
 import { useParams } from 'react-router-dom';
 
 export const useAdvertisementDetails = () => {
@@ -6,6 +7,10 @@ export const useAdvertisementDetails = () => {
   const { data: adDetails, isFetching } = useGetAdDetailsQuery(id ?? '', {
     skip: !id,
   });
+
+  useEffect(() => {
+    window.scrollTo({ top: 0 });
+  }, []);
 
   return { adDetails, isFetching };
 };

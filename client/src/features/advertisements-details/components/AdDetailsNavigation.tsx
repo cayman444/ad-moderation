@@ -1,0 +1,36 @@
+import { ROUTES_PATHS } from '@/app/router';
+import { ArrowLeftOutlined, ArrowRightOutlined } from '@ant-design/icons';
+import { Button } from 'antd';
+import { Link, useNavigate } from 'react-router-dom';
+
+export const AdDetailsNavigation = ({ adId }: { adId?: number }) => {
+  const navigate = useNavigate();
+
+  const prevAdId = adId ? adId - 1 : null;
+  const nextAdId = adId ? adId + 1 : null;
+
+  return (
+    <div className="flex justify-between">
+      <Link to={ROUTES_PATHS.AD_LIST}>
+        <Button icon={<ArrowLeftOutlined />}>Назад к списку</Button>
+      </Link>
+      <div className="flex gap-2">
+        <Button
+          icon={<ArrowLeftOutlined />}
+          disabled={!prevAdId ? true : false}
+          onClick={() => navigate(`/item/${prevAdId}`)}
+        >
+          Предыдущее
+        </Button>
+        <Button
+          icon={<ArrowRightOutlined />}
+          iconPosition="end"
+          disabled={!nextAdId ? true : false}
+          onClick={() => navigate(`/item/${nextAdId}`)}
+        >
+          Следующее
+        </Button>
+      </div>
+    </div>
+  );
+};
