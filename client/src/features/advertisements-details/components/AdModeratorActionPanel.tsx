@@ -1,36 +1,16 @@
-import {
-  useApproveAdMutation,
-  useRejectAdMutation,
-} from '@/shared/api/endpoints';
-import type { ModeratorReason } from '@/shared/api/types';
 import { CheckOutlined, CloseOutlined, EditOutlined } from '@ant-design/icons';
 import { Button, Modal } from 'antd';
-import { useState } from 'react';
+import { useAdModeratorActionPanel } from '../hooks';
 import { AdReasonsReject } from './AdReasonsReject';
 
 export const AdModeratorActionPanel = ({ adId }: { adId?: number }) => {
-  const [approveAd] = useApproveAdMutation();
-  const [rejectAd] = useRejectAdMutation();
-  const [isModalOpen, setIsModalOpen] = useState(false);
-
-  const handleChangeVisibleModal = (visible: boolean) => {
-    setIsModalOpen(visible);
-  };
-
-  const handleApproveAd = () => {
-    if (adId) {
-      approveAd(adId);
-    }
-  };
-
-  const handleRejectAd = (reason: ModeratorReason, comment: string) => {
-    if (adId) {
-      rejectAd({ id: adId, reason, comment });
-      handleChangeVisibleModal(false);
-    }
-  };
-
-  const handleRevisionAd = () => {};
+  const {
+    isModalOpen,
+    handleApproveAd,
+    handleRejectAd,
+    handleRevisionAd,
+    handleChangeVisibleModal,
+  } = useAdModeratorActionPanel(adId);
 
   return (
     <div className="flex gap-2 flex-wrap">

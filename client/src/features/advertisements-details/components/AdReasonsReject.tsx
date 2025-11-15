@@ -1,40 +1,23 @@
 import type { ModeratorReason } from '@/shared/api/types';
-import { Button, Input, Radio, type RadioChangeEvent } from 'antd';
+import { Button, Input, Radio } from 'antd';
 import clsx from 'clsx';
-import { type ChangeEvent, type FC, useState } from 'react';
+import type { FC } from 'react';
 import { AD_REASONS_REJECT_OPTIONS } from '../constants';
+import { useAdReasonsReject } from '../hooks';
 
-interface AdReasonsRejectProps {
+export interface AdReasonsRejectProps {
   handleRejectAd: (reason: ModeratorReason, comment: string) => void;
 }
 
-export const AdReasonsReject: FC<AdReasonsRejectProps> = ({
-  handleRejectAd,
-}) => {
-  const [reasonValue, setReasonValue] =
-    useState<ModeratorReason>('Запрещенный товар');
-  const [commentValue, setCommentValue] = useState('');
-  const [commentValueError, setCommentValueError] = useState(false);
-
-  const handleReasonValue = (e: RadioChangeEvent) => {
-    setReasonValue(e.target.value);
-
-    setCommentValueError(false);
-  };
-
-  const handleCommentValue = (e: ChangeEvent<HTMLTextAreaElement>) => {
-    setCommentValue(e.target.value);
-  };
-
-  const handleModalButtonClick = () => {
-    if (reasonValue === 'Другое' && !commentValue) {
-      setCommentValueError(true);
-      return;
-    }
-
-    setCommentValueError(false);
-    handleRejectAd(reasonValue, commentValue);
-  };
+export const AdReasonsReject: FC<AdReasonsRejectProps> = (params) => {
+  const {
+    commentValue,
+    reasonValue,
+    commentValueError,
+    handleCommentValue,
+    handleModalButtonClick,
+    handleReasonValue,
+  } = useAdReasonsReject(params);
 
   return (
     <div className="flex flex-col gap-4 mt-6">
