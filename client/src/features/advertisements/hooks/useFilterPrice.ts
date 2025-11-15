@@ -1,4 +1,4 @@
-import { useState } from 'react';
+import { useEffect, useState } from 'react';
 import type { AdFilterPriceProps } from '../components/AdFilterPrice';
 
 export const useFilterPrice = ({
@@ -26,6 +26,14 @@ export const useFilterPrice = ({
       typePrice: 'maxPrice',
     });
   };
+
+  useEffect(() => {
+    setLocalMinPrice(minPrice);
+  }, [minPrice]);
+
+  useEffect(() => {
+    setLocalMaxPrice(maxPrice);
+  }, [maxPrice]);
 
   return {
     localMinPrice,

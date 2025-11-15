@@ -1,6 +1,6 @@
 import { SearchOutlined } from '@ant-design/icons';
 import { Input } from 'antd';
-import { type FC, memo, useState } from 'react';
+import { type FC, memo, useEffect, useState } from 'react';
 import type { AdChangeFilterParams } from '../model';
 
 interface AdFilterSearchProps {
@@ -18,6 +18,10 @@ const AdFilterSearchComponent: FC<AdFilterSearchProps> = ({
     setLocalSearch(value);
     handleChangeFilter({ filter: 'search', value });
   };
+
+  useEffect(() => {
+    setLocalSearch(search);
+  }, [search]);
 
   return (
     <Input
