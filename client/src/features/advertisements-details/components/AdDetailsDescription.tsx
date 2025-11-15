@@ -1,7 +1,7 @@
 import { AdTag } from '@/features/advertisements/ui';
 import type { Advertisement } from '@/shared/api/types';
+import { AdItemInfo } from '@/shared/ui';
 import type { FC } from 'react';
-import { AdDetailsItemInfo } from './AdDetailsItemInfo';
 
 export const AdDetailsDescription: FC<Partial<Advertisement>> = ({
   title,
@@ -20,32 +20,30 @@ export const AdDetailsDescription: FC<Partial<Advertisement>> = ({
     <div className="flex flex-col gap-4">
       <h4 className="font-medium text-xl">Описание</h4>
       <ul className="flex-1 flex flex-col gap-2">
-        <AdDetailsItemInfo title="Название">{title}</AdDetailsItemInfo>
-        <AdDetailsItemInfo title="Цена">{price} ₽</AdDetailsItemInfo>
-        <AdDetailsItemInfo title="Категория">{category}</AdDetailsItemInfo>
-        <AdDetailsItemInfo title="Дата создания">
+        <AdItemInfo title="Название">{title}</AdItemInfo>
+        <AdItemInfo title="Цена">{price} ₽</AdItemInfo>
+        <AdItemInfo title="Категория">{category}</AdItemInfo>
+        <AdItemInfo title="Дата создания">
           {createdDate.toLocaleDateString()},{' '}
           {createdDate.toLocaleTimeString('ru-RU', {
             hour: '2-digit',
             minute: '2-digit',
           })}
-        </AdDetailsItemInfo>
-        <AdDetailsItemInfo title="Дата обновления">
+        </AdItemInfo>
+        <AdItemInfo title="Дата обновления">
           {updatedDate.toLocaleDateString()},{' '}
           {updatedDate.toLocaleTimeString('ru-RU', {
             hour: '2-digit',
             minute: '2-digit',
           })}
-        </AdDetailsItemInfo>
-        <AdDetailsItemInfo title="Статус">
+        </AdItemInfo>
+        <AdItemInfo title="Статус">
           <AdTag type="status" value={status} />
-        </AdDetailsItemInfo>
-        <AdDetailsItemInfo title="Приоритет">
+        </AdItemInfo>
+        <AdItemInfo title="Приоритет">
           <AdTag type="priority" value={priority} />
-        </AdDetailsItemInfo>
-        <AdDetailsItemInfo title="Подробное описание">
-          {description}
-        </AdDetailsItemInfo>
+        </AdItemInfo>
+        <AdItemInfo title="Подробное описание">{description}</AdItemInfo>
       </ul>
     </div>
   );

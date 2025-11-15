@@ -1,5 +1,5 @@
 import type { Seller } from '@/shared/api/types';
-import { AdDetailsItemInfo } from './AdDetailsItemInfo';
+import { AdItemInfo } from '@/shared/ui';
 
 export const AdDetailsInfoSeller = ({
   name,
@@ -11,14 +11,12 @@ export const AdDetailsInfoSeller = ({
     <div className="flex flex-col gap-4">
       <h4 className="font-medium text-xl">Информация о продавце</h4>
       <ul className="flex flex-col gap-1">
-        <AdDetailsItemInfo title="Имя">{name}</AdDetailsItemInfo>
-        <AdDetailsItemInfo title="Рейтинг">{rating}</AdDetailsItemInfo>
-        <AdDetailsItemInfo title="Количество объявлений">
-          {totalAds}
-        </AdDetailsItemInfo>
-        <AdDetailsItemInfo title="Дата регистрации">
+        <AdItemInfo title="Имя">{name}</AdItemInfo>
+        <AdItemInfo title="Рейтинг">{rating}</AdItemInfo>
+        <AdItemInfo title="Количество объявлений">{totalAds}</AdItemInfo>
+        <AdItemInfo title="Дата регистрации">
           {new Date(registeredAt ?? '').toLocaleDateString()}
-        </AdDetailsItemInfo>
+        </AdItemInfo>
       </ul>
     </div>
   );
