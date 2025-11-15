@@ -1,0 +1,1 @@
+export { useAdvertisementDetails } from './useAdvertisementDetails';
