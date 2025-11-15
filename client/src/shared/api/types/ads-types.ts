@@ -36,6 +36,11 @@ export interface AdvertisementParams {
   sortOrder: 'asc' | 'desc' | null;
 }
 
+export interface AdvertisementApproveResponse {
+  message: string;
+  ad: Advertisement;
+}
+
 export type AdStatus = 'pending' | 'approved' | 'rejected' | 'draft';
 export type AdPriority = 'normal' | 'urgent';
 export type AdvertisementList = Advertisement[];

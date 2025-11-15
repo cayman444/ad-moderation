@@ -2,6 +2,7 @@ import { useAdvertisementDetails } from '../hooks';
 import { AdDetailsInfo } from './AdDetailsInfo';
 import { AdImagesCarousel } from './AdImagesCarousel';
 import { AdModerationHistory } from './AdModerationHistory';
+import { AdModeratorActionPanel } from './AdModeratorActionPanel';
 
 export const AdvertisementDetails = () => {
   const { adDetails, isFetching } = useAdvertisementDetails();
@@ -22,6 +23,7 @@ export const AdvertisementDetails = () => {
         seller={adDetails?.seller}
         isFetching={isFetching}
       />
+      <AdModeratorActionPanel adId={adDetails?.id} />
     </div>
   );
 };
