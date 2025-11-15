@@ -9,7 +9,7 @@ export const AdvertisementDetails = () => {
 
   return (
     <div className="flex flex-col gap-4 p-4 border">
-      <div className="flex-1 grid grid-cols-2 gap-4">
+      <div className="grid grid-cols-2 gap-4 overflow-hidden">
         <Carousel arrows dots={false} className="rounded-lg! overflow-hidden!">
           {adDetails?.images.map((image) => (
             <img
@@ -20,7 +20,7 @@ export const AdvertisementDetails = () => {
             />
           ))}
         </Carousel>
-        <div className="flex flex-col gap-4 border rounded-lg p-4">
+        <div className="flex flex-col self-start gap-4 border rounded-lg p-4">
           <h4 className="text-xl font-medium">История модерации</h4>
           <ul className="flex flex-col gap-4 h-50 overflow-y-auto">
             {!adDetails?.moderationHistory.length && (

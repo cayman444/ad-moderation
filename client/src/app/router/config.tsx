@@ -5,7 +5,6 @@ import {
   NotFoundPage,
 } from '@/pages';
 import { createBrowserRouter, redirect } from 'react-router-dom';
-import { RootLayout } from '../layouts';
 
 export const ROUTES_PATHS = {
   HOME: '/',
@@ -16,25 +15,20 @@ export const ROUTES_PATHS = {
 
 export const router = createBrowserRouter([
   {
-    element: <RootLayout />,
-    children: [
-      {
-        index: true,
-        loader: () => redirect(ROUTES_PATHS.AD_LIST),
-      },
-      {
-        path: ROUTES_PATHS.AD_LIST,
-        element: <AdListPage />,
-      },
-      {
-        path: ROUTES_PATHS.AD_DETAILS,
-        element: <AdDetailsPage />,
-      },
-      {
-        path: ROUTES_PATHS.MODERATOR_STATS,
-        element: <ModeratorStatsPage />,
-      },
-    ],
+    index: true,
+    loader: () => redirect(ROUTES_PATHS.AD_LIST),
+  },
+  {
+    path: ROUTES_PATHS.AD_LIST,
+    element: <AdListPage />,
+  },
+  {
+    path: ROUTES_PATHS.AD_DETAILS,
+    element: <AdDetailsPage />,
+  },
+  {
+    path: ROUTES_PATHS.MODERATOR_STATS,
+    element: <ModeratorStatsPage />,
   },
   { path: '*', element: <NotFoundPage /> },
 ]);
