@@ -1,7 +1,8 @@
 import {
   useApproveAdMutation,
-  // useRejectAdMutation,
+  useRejectAdMutation,
 } from '@/shared/api/endpoints';
+import type { ModeratorReason } from '@/shared/api/types';
 import { CheckOutlined, CloseOutlined, EditOutlined } from '@ant-design/icons';
 import { Button, Modal } from 'antd';
 import { useState } from 'react';
@@ -9,20 +10,11 @@ import { AdReasonsReject } from './AdReasonsReject';
 
 export const AdModeratorActionPanel = ({ adId }: { adId?: number }) => {
   const [approveAd] = useApproveAdMutation();
-  // const [rejectAd] = useRejectAdMutation();
-
+  const [rejectAd] = useRejectAdMutation();
   const [isModalOpen, setIsModalOpen] = useState(false);
 
-  const showModal = () => {
-    setIsModalOpen(true);
-  };
-
-  const handleOk = () => {
-    setIsModalOpen(false);
-  };
-
-  const handleCancel = () => {
-    setIsModalOpen(false);
+  const handleChangeVisibleModal = (visible: boolean) => {
+    setIsModalOpen(visible);
   };
 
   const handleApproveAd = () => {
@@ -31,10 +23,10 @@ export const AdModeratorActionPanel = ({ adId }: { adId?: number }) => {
     }
   };
 
-  const handleRejectAd = () => {
+  const handleRejectAd = (reason: ModeratorReason, comment: string) => {
     if (adId) {
-      showModal();
-      // rejectAd({ id: adId, comment: '123', reason: 'Другое' });
+      rejectAd({ id: adId, reason, comment });
+      handleChangeVisibleModal(false);
     }
   };
 
@@ -56,7 +48,7 @@ export const AdModeratorActionPanel = ({ adId }: { adId?: number }) => {
         variant="solid"
         color="red"
         icon={<CloseOutlined />}
-        onClick={handleRejectAd}
+        onClick={() => handleChangeVisibleModal(true)}
       >
         Отклонить
       </Button>
@@ -72,11 +64,11 @@ export const AdModeratorActionPanel = ({ adId }: { adId?: number }) => {
       <Modal
         title="Выберите причину отклонения"
         open={isModalOpen}
-        onOk={handleOk}
-        onCancel={handleCancel}
+        onOk={() => handleChangeVisibleModal(true)}
+        onCancel={() => handleChangeVisibleModal(false)}
         footer={false}
       >
-        <AdReasonsReject />
+        <AdReasonsReject handleRejectAd={handleRejectAd} />
       </Modal>
     </div>
   );

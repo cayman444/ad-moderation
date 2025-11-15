@@ -1,10 +1,16 @@
 import type { ModeratorReason } from '@/shared/api/types';
 import { Button, Input, Radio, type RadioChangeEvent } from 'antd';
 import clsx from 'clsx';
-import { useState } from 'react';
+import { type ChangeEvent, type FC, useState } from 'react';
 import { AD_REASONS_REJECT_OPTIONS } from '../constants';
 
-export const AdReasonsReject = () => {
+interface AdReasonsRejectProps {
+  handleRejectAd: (reason: ModeratorReason, comment: string) => void;
+}
+
+export const AdReasonsReject: FC<AdReasonsRejectProps> = ({
+  handleRejectAd,
+}) => {
   const [reasonValue, setReasonValue] =
     useState<ModeratorReason>('Запрещенный товар');
   const [commentValue, setCommentValue] = useState('');
@@ -12,16 +18,22 @@ export const AdReasonsReject = () => {
 
   const handleReasonValue = (e: RadioChangeEvent) => {
     setReasonValue(e.target.value);
+
     setCommentValueError(false);
   };
 
-  const handleRejectAd = () => {
+  const handleCommentValue = (e: ChangeEvent<HTMLTextAreaElement>) => {
+    setCommentValue(e.target.value);
+  };
+
+  const handleModalButtonClick = () => {
     if (reasonValue === 'Другое' && !commentValue) {
       setCommentValueError(true);
       return;
     }
 
     setCommentValueError(false);
+    handleRejectAd(reasonValue, commentValue);
   };
 
   return (
@@ -36,7 +48,7 @@ export const AdReasonsReject = () => {
         <Input.TextArea
           placeholder="Комментарий"
           value={commentValue}
-          onChange={(e) => setCommentValue(e.target.value)}
+          onChange={handleCommentValue}
           status={commentValueError ? 'error' : undefined}
           name="comment"
           disabled={reasonValue !== 'Другое'}
@@ -49,7 +61,7 @@ export const AdReasonsReject = () => {
           <p className="text-red-500">Укажите комментарий</p>
         )}
       </div>
-      <Button type="primary" onClick={handleRejectAd}>
+      <Button type="primary" onClick={handleModalButtonClick}>
         Отправить
       </Button>
     </div>
