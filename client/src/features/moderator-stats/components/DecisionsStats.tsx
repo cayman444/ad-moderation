@@ -1,33 +1,9 @@
-import { useGetDecisionsStatsQuery } from '@/shared/api/endpoints';
-import { useAppSelector } from '@/shared/store';
 import { Pie } from '@ant-design/charts';
 import { Card, Spin } from 'antd';
+import { useDecisionsStats } from '../hooks/useDecisionsStats';
 
 export const DecisionsStats = () => {
-  const period = useAppSelector((state) => state.moderatorStats.periodAd);
-
-  const { data: decisionsStats, isFetching } = useGetDecisionsStatsQuery({
-    period,
-  });
-
-  const config = {
-    data: [
-      { type: '分类一', value: 27 },
-      { type: '分类二', value: 25 },
-      { type: '分类三', value: 18 },
-      { type: '分类四', value: 15 },
-      { type: '分类五', value: 10 },
-      { type: '其他', value: 5 },
-    ],
-    angleField: 'value',
-    colorField: 'type',
-    label: {
-      text: 'value',
-      style: {
-        fontWeight: 'bold',
-      },
-    },
-  };
+  const { decisionsStats, isFetching, config } = useDecisionsStats();
 
   if (isFetching)
     return (

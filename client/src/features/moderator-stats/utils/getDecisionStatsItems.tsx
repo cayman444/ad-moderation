@@ -1,26 +1,22 @@
-import type { ActivityData } from '@/shared/api/types';
+import type { DecisionsStats } from '@/shared/api/types';
 
-export const getChartActivityItems = ({
+export const getDecisionStatsItems = ({
   approved,
   rejected,
   requestChanges,
-  date,
-}: ActivityData) => {
+}: DecisionsStats) => {
   return [
     {
-      date,
       type: 'Одобрено',
       value: approved,
     },
     {
-      date,
       type: 'Отклонено',
       value: rejected,
     },
     {
-      date,
-      type: 'Требуются исправления',
+      type: 'На доработке',
       value: requestChanges,
     },
-  ];
+  ].filter(({ value }) => value);
 };
