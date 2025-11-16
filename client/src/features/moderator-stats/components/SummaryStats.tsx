@@ -15,7 +15,7 @@ export const SummaryStats = () => {
     dispatch(changePeriodAd(key));
   };
 
-  if (isLoading) return <Skeleton active paragraph={{ rows: 10 }} />;
+  if (isLoading) return <Skeleton active paragraph={{ rows: 8 }} />;
 
   return (
     <div className="flex flex-col gap-2">
