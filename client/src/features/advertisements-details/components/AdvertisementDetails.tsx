@@ -12,17 +12,22 @@ export const AdvertisementDetails = () => {
   if (isError) return <AdDetailsError error={error} />;
 
   return (
-    <div className="flex flex-col gap-8 p-4 border">
-      <div className="grid grid-cols-1 gap-4 overflow-hidden md:grid-cols-2">
-        <AdImagesCarousel images={adDetails?.images} isFetching={isFetching} />
-        <AdModerationHistory
-          moderationHistory={adDetails?.moderationHistory}
-          isFetching={isFetching}
-        />
+    <main className="flex flex-col gap-8 pt-5 pb-10">
+      <div className="flex flex-col gap-8 p-4 border">
+        <div className="grid grid-cols-1 gap-4 overflow-hidden md:grid-cols-2">
+          <AdImagesCarousel
+            images={adDetails?.images}
+            isFetching={isFetching}
+          />
+          <AdModerationHistory
+            moderationHistory={adDetails?.moderationHistory}
+            isFetching={isFetching}
+          />
+        </div>
+        <AdDetailsInfo {...adDetails} isFetching={isFetching} />
+        <AdModeratorActionPanel adId={adDetails?.id} />
+        <AdDetailsNavigation adId={adDetails?.id} />
       </div>
-      <AdDetailsInfo {...adDetails} isFetching={isFetching} />
-      <AdModeratorActionPanel adId={adDetails?.id} />
-      <AdDetailsNavigation adId={adDetails?.id} />
-    </div>
+    </main>
   );
 };

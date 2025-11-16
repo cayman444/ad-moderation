@@ -15,7 +15,7 @@ export const Advertisements = () => {
   } = useAdvertisements();
 
   return (
-    <>
+    <main className="flex flex-col gap-8 pt-5 pb-10">
       <AdFilters />
       <AdList
         adsList={adsList}
@@ -28,7 +28,7 @@ export const Advertisements = () => {
         totalItems={totalItems}
         onChangePage={onChangePage}
       />
-    </>
+    </main>
   );
 };
 

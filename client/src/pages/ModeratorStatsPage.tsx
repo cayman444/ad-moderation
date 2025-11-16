@@ -1,3 +1,12 @@
+import { ModeratorStats } from '@/features/moderator-stats';
+import { Container } from '@/shared/ui';
+import { Header } from '@/shared/widgets';
+
 export const ModeratorStatsPage = () => {
-  return <div>Moderator stats</div>;
+  return (
+    <Container>
+      <Header />
+      <ModeratorStats />
+    </Container>
+  );
 };
