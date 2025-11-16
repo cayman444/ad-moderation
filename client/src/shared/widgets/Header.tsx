@@ -7,7 +7,7 @@ export const Header = () => {
   const { pathname } = useLocation();
 
   return (
-    <header className="flex gap-2 flex-wrap py-5">
+    <header className="flex gap-2 flex-wrap pt-10 pb-5">
       <Link to={ROUTES_PATHS.AD_LIST}>
         <Button
           type={pathname === ROUTES_PATHS.AD_LIST ? 'primary' : 'text'}
