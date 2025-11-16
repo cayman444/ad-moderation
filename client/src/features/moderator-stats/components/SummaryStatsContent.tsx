@@ -36,7 +36,7 @@ export const SummaryStatsContent = ({
         <Card variant="outlined" className="flex-1 min-w-42">
           <Statistic
             title="Среднее время проверки"
-            value={Math.round((averageReviewTime ?? 0) / 60)}
+            value={Math.round((averageReviewTime ?? 0) / 1000 / 60) || 1}
             suffix="мин"
           />
         </Card>

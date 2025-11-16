@@ -1,17 +1,22 @@
 import { createApi, fetchBaseQuery } from '@reduxjs/toolkit/query/react';
 import { BASE_URL } from '../constants';
 import type {
+  ActivityDataList,
   Advertisement,
   AdvertisementModeratorParams,
   AdvertisementModeratorResponse,
   AdvertisementParams,
   AdvertisementResponse,
+  CategoriesStats,
+  CategoriesStatsParams,
+  SummaryStats,
+  SummaryStatsParams,
 } from '../types';
 
 export const adsApi = createApi({
   reducerPath: 'adsApi',
   baseQuery: fetchBaseQuery({ baseUrl: BASE_URL }),
-  tagTypes: ['Ad'],
+  tagTypes: ['Ad', 'Stats'],
   endpoints: (build) => ({
     getAds: build.query<AdvertisementResponse, Partial<AdvertisementParams>>({
       query: ({
@@ -55,7 +60,7 @@ export const adsApi = createApi({
     }),
     approveAd: build.mutation<AdvertisementModeratorResponse, number>({
       query: (id) => ({ url: `/ads/${id}/approve`, method: 'POST' }),
-      invalidatesTags: ['Ad'],
+      invalidatesTags: ['Ad', 'Stats'],
     }),
     rejectAd: build.mutation<
       AdvertisementModeratorResponse,
@@ -66,7 +71,7 @@ export const adsApi = createApi({
         method: 'POST',
         body,
       }),
-      invalidatesTags: ['Ad'],
+      invalidatesTags: ['Ad', 'Stats'],
     }),
     requestChangesAd: build.mutation<
       AdvertisementModeratorResponse,
@@ -77,7 +82,36 @@ export const adsApi = createApi({
         method: 'POST',
         body,
       }),
-      invalidatesTags: ['Ad'],
+      invalidatesTags: ['Ad', 'Stats'],
+    }),
+    getCategoriesStats: build.query<
+      CategoriesStats,
+      Partial<CategoriesStatsParams>
+    >({
+      query: () => '/stats/chart/categories',
+      providesTags: ['Stats'],
+    }),
+    getSummaryStats: build.query<SummaryStats, SummaryStatsParams>({
+      query: ({ period }) => {
+        return {
+          url: '/stats/summary',
+          params: {
+            period,
+          },
+        };
+      },
+      providesTags: ['Stats'],
+    }),
+    getChartActivity: build.query<ActivityDataList, SummaryStatsParams>({
+      query: ({ period }) => {
+        return {
+          url: '/stats/chart/activity',
+          params: {
+            period,
+          },
+        };
+      },
+      providesTags: ['Stats'],
     }),
   }),
 });
@@ -88,4 +122,7 @@ export const {
   useApproveAdMutation,
   useRejectAdMutation,
   useRequestChangesAdMutation,
+  useGetCategoriesStatsQuery,
+  useGetSummaryStatsQuery,
+  useGetChartActivityQuery,
 } = adsApi;
