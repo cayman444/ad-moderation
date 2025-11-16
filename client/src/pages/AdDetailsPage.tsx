@@ -4,7 +4,7 @@ import { Header } from '@/shared/widgets';
 
 export const AdDetailsPage = () => {
   return (
-    <Container>
+    <Container className="max-w-4xl">
       <Header />
       <AdvertisementDetails />
     </Container>
