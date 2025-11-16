@@ -5,6 +5,9 @@
 ### **Запуск приложения**
 
 ```bash
+# Клонирование репозитория
+git clone https://github.com/cayman444/ad-moderation.git
+
 # Установка и запуск сервера (терминал 1)
 cd tech-int3-server
 npm install
@@ -18,7 +21,7 @@ npm run dev
 
 ### **Стек**
 
-`React`, `TypeScript`, `Redux`, `RTK Query`, `React Router Dom`, `Ant Design`, `Tailwind CSS` `Vite`,
+`React`, `TypeScript`, `Redux`, `RTK Query`, `React Router Dom`, `Ant Design`, `Tailwind CSS`, `Vite`
 
 ### **Функциональность**
 
