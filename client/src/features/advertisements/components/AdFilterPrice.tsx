@@ -16,7 +16,7 @@ const AdFilterPriceComponent = (filterPriceProps: AdFilterPriceProps) => {
   } = useFilterPrice(filterPriceProps);
 
   return (
-    <div className="flex gap-2 flex-wrap">
+    <div className="w-full flex gap-2 flex-wrap">
       <div className="flex-1 flex items-center gap-2 flex-wrap">
         <label htmlFor="min-price" className="text-nowrap">
           Минимальная цена:

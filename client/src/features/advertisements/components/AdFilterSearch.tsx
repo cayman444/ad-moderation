@@ -30,7 +30,7 @@ const AdFilterSearchComponent: FC<AdFilterSearchProps> = ({
       allowClear
       placeholder="Поиск..."
       value={localSearch}
-      className="min-w-42!"
+      className="min-w-52!"
       onChange={(e) => handleChangeSearch(e.target.value)}
     />
   );

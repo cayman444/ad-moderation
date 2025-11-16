@@ -15,7 +15,7 @@ const AdFilterSortComponent = ({
   handleChangeFilter,
 }: AdFilterSortProps) => {
   return (
-    <div className="flex gap-2 items-center">
+    <div className="flex-1 flex gap-2 items-center">
       <Select
         value={sortBy}
         placeholder="Сортировка"
@@ -24,7 +24,7 @@ const AdFilterSortComponent = ({
           handleChangeFilter({ filter: 'sort', value, typeSort: 'sortBy' })
         }
         options={options}
-        className="min-w-42!"
+        className="min-w-42! w-full!"
       />
       <Button
         icon={sortOrder === 'asc' ? <ArrowUpOutlined /> : <ArrowDownOutlined />}
