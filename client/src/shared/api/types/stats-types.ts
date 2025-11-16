@@ -14,6 +14,12 @@ export interface SummaryStats {
   requestChangesPercentage: number;
   averageReviewTime: number;
 }
+export interface ActivityData {
+  date: string;
+  approved: number;
+  rejected: number;
+  requestChanges: number;
+}
 export interface SummaryStatsParams {
   period?: SummaryStatsPeriod;
   startDate?: string;
@@ -22,3 +28,4 @@ export interface SummaryStatsParams {
 
 export type SummaryStatsPeriod = 'today' | 'week' | 'month' | 'custom';
 export type CategoriesStats = Record<string, number>;
+export type ActivityDataList = ActivityData[];

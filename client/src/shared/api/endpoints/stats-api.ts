@@ -1,6 +1,7 @@
 import { createApi, fetchBaseQuery } from '@reduxjs/toolkit/query/react';
 import { BASE_URL } from '../constants';
 import type {
+  ActivityDataList,
   CategoriesStats,
   CategoriesStatsParams,
   SummaryStats,
@@ -27,7 +28,21 @@ export const statsApi = createApi({
         };
       },
     }),
+    getChartActivity: build.query<ActivityDataList, SummaryStatsParams>({
+      query: ({ period }) => {
+        return {
+          url: '/stats/chart/activity',
+          params: {
+            period,
+          },
+        };
+      },
+    }),
   }),
 });
 
-export const { useGetCategoriesStatsQuery, useGetSummaryStatsQuery } = statsApi;
+export const {
+  useGetCategoriesStatsQuery,
+  useGetSummaryStatsQuery,
+  useGetChartActivityQuery,
+} = statsApi;

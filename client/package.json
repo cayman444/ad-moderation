@@ -12,6 +12,7 @@
     "prepare": "cd .. && husky client/.husky"
   },
   "dependencies": {
+    "@ant-design/charts": "^2.6.6",
     "@ant-design/v5-patch-for-react-19": "^1.0.3",
     "@reduxjs/toolkit": "^2.10.1",
     "@tailwindcss/vite": "^4.1.17",

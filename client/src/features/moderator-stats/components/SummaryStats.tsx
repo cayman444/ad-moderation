@@ -2,7 +2,7 @@ import { useGetSummaryStatsQuery } from '@/shared/api/endpoints';
 import { useAppDispatch, useAppSelector } from '@/shared/store';
 import { Skeleton, Tabs } from 'antd';
 import { changePeriodAd } from '../model';
-import { getSummeryStatsItems } from '../utils';
+import { getSummaryStatsItems } from '../utils';
 
 export const SummaryStats = () => {
   const dispatch = useAppDispatch();
@@ -22,7 +22,7 @@ export const SummaryStats = () => {
       <h2 className="font-medium text-xl">Всего проверено объявлений</h2>
       <Tabs
         defaultActiveKey={periodAd}
-        items={getSummeryStatsItems(summaryStats)}
+        items={getSummaryStatsItems(summaryStats)}
         onChange={onChange}
       />
     </div>

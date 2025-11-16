@@ -1,1 +1,2 @@
-export { getSummeryStatsItems } from './getSummeryStatsItems';
+export { getChartActivityItems } from './getChartActivityItems';
+export { getSummaryStatsItems } from './getSummaryStatsItems';

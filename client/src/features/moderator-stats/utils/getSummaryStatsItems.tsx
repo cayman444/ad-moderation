@@ -2,7 +2,7 @@ import type { SummaryStats } from '@/shared/api/types';
 import type { TabsProps } from 'antd';
 import { SummaryStatsContent } from '../components/SummaryStatsContent';
 
-export const getSummeryStatsItems = (
+export const getSummaryStatsItems = (
   summaryStats?: SummaryStats
 ): TabsProps['items'] => {
   if (!summaryStats) return [];
