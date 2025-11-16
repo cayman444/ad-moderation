@@ -8,7 +8,6 @@ import type {
   AdvertisementParams,
   AdvertisementResponse,
   CategoriesStats,
-  CategoriesStatsParams,
   DecisionsStats,
   StatsParams,
   SummaryStats,
@@ -85,13 +84,6 @@ export const adsApi = createApi({
       }),
       invalidatesTags: ['Ad', 'Stats'],
     }),
-    getCategoriesStats: build.query<
-      CategoriesStats,
-      Partial<CategoriesStatsParams>
-    >({
-      query: () => '/stats/chart/categories',
-      providesTags: ['Stats'],
-    }),
     getSummaryStats: build.query<SummaryStats, StatsParams>({
       query: ({ period }) => {
         return {
@@ -118,6 +110,17 @@ export const adsApi = createApi({
       query: ({ period }) => {
         return {
           url: '/stats/chart/decisions',
+          params: {
+            period,
+          },
+        };
+      },
+      providesTags: ['Stats'],
+    }),
+    getCategoriesStats: build.query<CategoriesStats, StatsParams>({
+      query: ({ period }) => {
+        return {
+          url: '/stats/chart/categories',
           params: {
             period,
           },

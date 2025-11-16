@@ -1,3 +1,4 @@
+import { CategoriesStats } from './CategoriesStats';
 import { ChartActivity } from './ChartActivity';
 import { DecisionsStats } from './DecisionsStats';
 import { SummaryStats } from './SummaryStats';
@@ -10,6 +11,7 @@ export const ModeratorStats = () => {
         <ChartActivity />
         <DecisionsStats />
       </div>
+      <CategoriesStats />
     </main>
   );
 };

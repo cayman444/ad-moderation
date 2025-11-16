@@ -17,7 +17,7 @@ export const ChartActivity = () => {
       <h2 className="font-medium text-xl text-center">График активности</h2>
       {activityData.length > 0 ? (
         <Card variant="outlined">
-          <Column {...config} />
+          <Column {...config} className={'h-72!'} />
         </Card>
       ) : (
         <div className="text-center py-8">Нет данных за выбранный период</div>

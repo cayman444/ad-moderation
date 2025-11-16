@@ -17,7 +17,7 @@ export const DecisionsStats = () => {
       <h2 className="font-medium text-xl text-center">Распределение решений</h2>
       {decisionsStats ? (
         <Card variant="outlined">
-          <Pie {...config} />
+          <Pie {...config} className={'h-72!'} />
         </Card>
       ) : (
         <div className="text-center py-8">Нет данных за выбранный период</div>

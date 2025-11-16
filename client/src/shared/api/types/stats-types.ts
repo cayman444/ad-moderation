@@ -1,9 +1,3 @@
-export interface CategoriesStatsParams {
-  period: string;
-  startDate: string;
-  endDate: string;
-}
-
 export interface SummaryStats {
   totalReviewed: number;
   totalReviewedToday: number;
