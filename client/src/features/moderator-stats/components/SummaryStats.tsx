@@ -19,7 +19,6 @@ export const SummaryStats = () => {
 
   return (
     <div className="flex flex-col gap-2">
-      <h2 className="font-medium text-xl">Всего проверено объявлений</h2>
       <Tabs
         defaultActiveKey={periodAd}
         items={getSummaryStatsItems(summaryStats)}

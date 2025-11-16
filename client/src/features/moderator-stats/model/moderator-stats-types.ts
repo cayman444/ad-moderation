@@ -1,5 +1,5 @@
-import type { SummaryStatsPeriod } from '@/shared/api/types';
+import type { AdStatsPeriod } from '@/shared/api/types';
 
 export interface moderatorStatsState {
-  periodAd?: SummaryStatsPeriod;
+  periodAd?: AdStatsPeriod;
 }

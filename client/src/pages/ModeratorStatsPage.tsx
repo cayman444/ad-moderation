@@ -4,7 +4,7 @@ import { Header } from '@/shared/widgets';
 
 export const ModeratorStatsPage = () => {
   return (
-    <Container>
+    <Container className="max-w-4xl">
       <Header />
       <ModeratorStats />
     </Container>

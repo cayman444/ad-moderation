@@ -1,5 +1,5 @@
 import { Column } from '@ant-design/charts';
-import { Spin } from 'antd';
+import { Card, Spin } from 'antd';
 import { useChartActivity } from '../hooks';
 
 export const ChartActivity = () => {
@@ -14,9 +14,11 @@ export const ChartActivity = () => {
 
   return (
     <div className="flex flex-col gap-4">
-      <h2 className="font-medium text-xl">График активности</h2>
+      <h2 className="font-medium text-xl text-center">График активности</h2>
       {activityData.length > 0 ? (
-        <Column {...config} />
+        <Card variant="outlined">
+          <Column {...config} />
+        </Card>
       ) : (
         <div className="text-center py-8">Нет данных за выбранный период</div>
       )}

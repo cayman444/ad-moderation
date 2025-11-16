@@ -20,12 +20,17 @@ export interface ActivityData {
   rejected: number;
   requestChanges: number;
 }
-export interface SummaryStatsParams {
-  period?: SummaryStatsPeriod;
+export interface DecisionsStats {
+  approved: number;
+  rejected: number;
+  requestChanges: number;
+}
+export interface StatsParams {
+  period?: AdStatsPeriod;
   startDate?: string;
   endDate?: string;
 }
 
-export type SummaryStatsPeriod = 'today' | 'week' | 'month' | 'custom';
+export type AdStatsPeriod = 'today' | 'week' | 'month' | 'custom';
 export type CategoriesStats = Record<string, number>;
 export type ActivityDataList = ActivityData[];

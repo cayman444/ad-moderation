@@ -1,8 +1,6 @@
-import type { SummaryStatsPeriod } from '@/shared/api/types';
+import type { AdStatsPeriod } from '@/shared/api/types';
 
-export const isSummaryStatsPeriod = (
-  value: unknown
-): value is SummaryStatsPeriod => {
+export const isAdStatsPeriod = (value: unknown): value is AdStatsPeriod => {
   return (
     value === 'today' ||
     value === 'month' ||

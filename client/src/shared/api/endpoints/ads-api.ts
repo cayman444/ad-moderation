@@ -9,8 +9,9 @@ import type {
   AdvertisementResponse,
   CategoriesStats,
   CategoriesStatsParams,
+  DecisionsStats,
+  StatsParams,
   SummaryStats,
-  SummaryStatsParams,
 } from '../types';
 
 export const adsApi = createApi({
@@ -91,7 +92,7 @@ export const adsApi = createApi({
       query: () => '/stats/chart/categories',
       providesTags: ['Stats'],
     }),
-    getSummaryStats: build.query<SummaryStats, SummaryStatsParams>({
+    getSummaryStats: build.query<SummaryStats, StatsParams>({
       query: ({ period }) => {
         return {
           url: '/stats/summary',
@@ -102,10 +103,21 @@ export const adsApi = createApi({
       },
       providesTags: ['Stats'],
     }),
-    getChartActivity: build.query<ActivityDataList, SummaryStatsParams>({
+    getChartActivity: build.query<ActivityDataList, StatsParams>({
       query: ({ period }) => {
         return {
           url: '/stats/chart/activity',
+          params: {
+            period,
+          },
+        };
+      },
+      providesTags: ['Stats'],
+    }),
+    getDecisionsStats: build.query<DecisionsStats, StatsParams>({
+      query: ({ period }) => {
+        return {
+          url: '/stats/chart/decisions',
           params: {
             period,
           },
@@ -125,4 +137,5 @@ export const {
   useGetCategoriesStatsQuery,
   useGetSummaryStatsQuery,
   useGetChartActivityQuery,
+  useGetDecisionsStatsQuery,
 } = adsApi;

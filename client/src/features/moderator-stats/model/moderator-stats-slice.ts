@@ -1,5 +1,5 @@
 import { type PayloadAction, createSlice } from '@reduxjs/toolkit';
-import { isSummaryStatsPeriod } from './moderator-stats-guards';
+import { isAdStatsPeriod } from './moderator-stats-guards';
 import type { moderatorStatsState } from './moderator-stats-types';
 
 const initialState: moderatorStatsState = { periodAd: 'today' };
@@ -9,7 +9,7 @@ export const moderatorStatsSlice = createSlice({
   initialState,
   reducers: {
     changePeriodAd: (state, { payload }: PayloadAction<string>) => {
-      if (isSummaryStatsPeriod(payload)) {
+      if (isAdStatsPeriod(payload)) {
         state.periodAd = payload;
       }
     },
